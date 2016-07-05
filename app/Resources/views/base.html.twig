@@ -15,23 +15,19 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="navbar">
               <a class="navbar-brand" href="#">InvoiceIO</a>
-              <ul class="nav navbar-nav">
-                <li class="active"><a href="/">Registros</a></li>
-                <li class=""><a href="/">Reportes</a></li>
-                <li class=""><a href="/">Categorias</a></li>
-              </ul>
-
+              {{ knp_menu_render('AppBundle:Builder:mainMenu', {'currentClass': 'active', 'template': 'AppBundle:Menu:knp_menu.html.twig'}) }}
             </div><!-- /.navbar-collapse -->
           </div><!-- /.container-fluid -->
         </nav>
-        <div id="content">
-
-            <div class="col-md-3">
+        <div id="content" class="container">
+          <div class="page-header">
+              <h1>{% block title_section %}{% endblock %} <small>{% block subtitle_section %}{% endblock %}</small></h1>
+          </div>
+            <!--<div class="col-md-3">
               {% block side %}
 
               {% endblock %}
-            </div>
-            <div class="col-md-9">
+            </div>-->
               <!-- <div class="registro-form">
                 Acá va el form
               </div> -->
@@ -41,10 +37,7 @@
                 <strong>{{ flashMessage }}</strong>
               </div>
               {% endfor %}
-              {% block contenido %}
-
-              {% endblock %}
-            </div>
+              {% block content %}{% endblock %}
         </div>
 
 

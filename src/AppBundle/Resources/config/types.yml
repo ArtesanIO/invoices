@@ -1,0 +1,5 @@
+services:
+    blocks.type:
+        class: AppBundle\Form\BlocksType
+        tags:
+            - { name: form.type, alias: blocks }

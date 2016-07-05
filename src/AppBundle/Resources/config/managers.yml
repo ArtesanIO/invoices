@@ -1,0 +1,7 @@
+services:
+  blocks.manager:
+    class: AppBundle\Model\BlocksManager
+    arguments:
+      - AppBundle:Blocks
+    calls:
+      - [setContainer, ["@service_container"]]

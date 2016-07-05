@@ -1,0 +1,16 @@
+{% extends 'blocks.html.twig' %}
+
+{% block subtitle_section %} Create {% endblock %}
+
+{% block content %}
+  <div class="panel panel-default col-lg-4">
+    <div class="panel-body">
+      <form class="" action="" method="post">
+        {{ form_widget(blocks_form) }}
+        <button type="submit" name="button" class="btn btn-default">
+          Submit
+        </button>
+      </form>
+    </div>
+  </div>
+{% endblock%}
