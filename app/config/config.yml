@@ -2,6 +2,7 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    #- { resource: stof/doctrine-extensions.yml }
 
 framework:
     #esi:             ~
@@ -65,6 +66,11 @@ doctrine:
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
         auto_mapping: true
+
+stof_doctrine_extensions:
+    orm:
+        default:
+            timestampable: true
 
 # Swiftmailer Configuration
 swiftmailer:

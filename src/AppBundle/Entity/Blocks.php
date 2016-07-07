@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 /**
  * Blocks
@@ -12,6 +13,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Blocks
 {
+  use TimestampableEntity;
+
     /**
      * @var integer
      *
@@ -33,6 +36,11 @@ class Blocks
      * @ORM\JoinColumn(name="currency_id", referencedColumnName="id")
      */
     private $currencys;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Records", mappedBy="blocks")
+     */
+    private $records;
 
 
     /**
@@ -107,7 +115,7 @@ class Blocks
     /**
      * Get currencys
      *
-     * @return \AppBundle\Entity\Currencys 
+     * @return \AppBundle\Entity\Currencys
      */
     public function getCurrencys()
     {
