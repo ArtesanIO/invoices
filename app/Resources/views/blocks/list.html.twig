@@ -1,5 +1,20 @@
 {% extends 'blocks.html.twig' %}
 
 {% block content %}
+  {% import 'AppBundle::Components/buttons.html.twig' as buttons %}
+  <table class="table table-condensed">
+    <tbody>
+      {% for block in blocks %}
+      <tr>
+        <td>{{ block.id }}</td>
+        <td>{{ block.block }}</td>
+        <td>{{ block.currencys.currency }}</td>
+        <td class="text-right">
+          {{ buttons.action('buttons.edit'|trans, { 'path': 'blocks_edit', 'args': { 'id': 1 } }) }}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 
 {% endblock %}

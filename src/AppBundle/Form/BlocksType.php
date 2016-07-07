@@ -15,11 +15,15 @@ class BlocksType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('block')
+            ->add('block', null, array(
+              'label' => 'sections.blocks.form.block'
+            ))
             ->add('currencys', 'entity', array(
               'class' => 'AppBundle:Currencys',
               'property' => 'currency',
-              'empty_value' => 'Choose'
+              'empty_value' => 'form.empty_value',
+              'translation_domain' => 'messages',
+              'label' => 'sections.blocks.form.currencys'
             ))
         ;
     }

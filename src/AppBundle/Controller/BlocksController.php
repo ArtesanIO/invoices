@@ -23,7 +23,12 @@ class BlocksController extends Controller
     public function listAction(Request $request)
     {
 
+      $blocksManager = $this->get('blocks.manager');
+
+      $blocks = $blocksManager->getRepository()->findAll();
+
       return $this->render('blocks/list.html.twig', array(
+        'blocks' => $blocks
       ));
         /*$em = $this->getDoctrine()->getManager();
 
@@ -72,31 +77,29 @@ class BlocksController extends Controller
       return $this->render('blocks/create.html.twig', array(
         'blocks_form' => $blocksForm->createView()
       ));
-        /*$em = $this->getDoctrine()->getManager();
+    }
 
-        $registros = $em->getRepository('AppBundle:Registros')->findAll();
+    /**
+     * @Route("/{id}", name="blocks_edit")
+     */
+    public function editAction($id, Request $request)
+    {
+      exit('Block edit');
+      $blocksManager = $this->get('blocks.manager');
 
-        $categorias = $em->getRepository('AppBundle:Categorias');
+      $blocks = $blocksManager->create();
 
-        $registro = new Registros();
-        $registroForm = $this->createForm(new RegistrosType(), $registro);
-        $registroForm->handleRequest($request);
+      $blocksForm = $this->createForm('blocks', $blocks)->handleRequest($request);
 
-        if($registroForm->isValid()){
+      if($blocksForm->isValid()){
+        $blocksManager->save($blocks);
 
-          $em->persist($registro);
-          $em->flush();
+        return $this->redirect($this->generateUrl('blocks'));
+      }
 
-          $this->get('session')->getFlashBag()->add('mensaje', 'Registro creado');
-
-          return $this->redirect($this->generateUrl('registros'));
-        }
-
-        return $this->render('registros/registros.html.twig', array(
-          'registro_form' => $registroForm->createView(),
-          'registros'     => $registros
-        ));
-        */
+      return $this->render('blocks/create.html.twig', array(
+        'blocks_form' => $blocksForm->createView()
+      ));
     }
 
     /**

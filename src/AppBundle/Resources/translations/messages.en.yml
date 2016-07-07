@@ -1,0 +1,17 @@
+buttons:
+  create: Create
+  save: Save
+  delete: Delete
+  edit: Edit
+  view: View
+
+form:
+  empty_value: Choose
+  button: Submit
+
+sections:
+  blocks:
+    title: Blocks
+    form:
+      block: Block
+      currencys: Currencys

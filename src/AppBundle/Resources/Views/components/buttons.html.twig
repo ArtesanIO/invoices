@@ -1,0 +1,49 @@
+{% trans_default_domain 'ArtesanusBundle' %}
+
+{%- macro button(text, type, class, icon = null, htmlAttributes = null, name = null, value = null) -%}
+    <button type="{{ type|default('button') }}" name="{{ name }}" class="btn btn-{{ class|default('default') }}" {{ htmlAttributes }} value="{{ value }}">
+        {% if icon %}<i class="glyphicon glyphicon-{{ icon }}"></i> {% endif %} {{ text }}
+    </button>
+{%- endmacro -%}
+
+{%- macro action(text, path = null, class, icon = null, htmlAttributes = null, name = null, value = null) -%}
+
+    {% set path = (path.args) ? path(path.path, path.args) : path(path.path)  %}
+
+    <a href="{{ path }}" name="{{ name }}" class="btn btn-{{ class|default('default') }}" {{ htmlAttributes }} value="{{ value }}">
+        {% if icon %}<i class="glyphicon glyphicon-{{ icon }}"></i> {% endif %} {{ text }}
+    </a>
+
+{%- endmacro -%}
+
+{%- macro submit(text = 'Submit', name= null, class = "primary", value = null, icon = "send") -%}
+    {% import _self as btns %}
+
+    {% set type="submit" %}
+    {{ btns.button(text, type, class, icon,'', name, value) }}
+{%- endmacro -%}
+
+{%- macro btn_delete() -%}
+    <td class="text-right">
+        <button type="button" class="btn btn-default delete-collection" onclick="deleteCollection(this);">
+            <span class="glyphicon glyphicon-trash"></span>
+        </button>
+    </td>
+{%- endmacro -%}
+
+{%- macro save_add() -%}
+    <div class="btn-group">
+        <button type="submit" class="btn btn-primary">
+            Guardar
+        </button>
+        <button type="button" class="btn btn-default add-collection">
+            <span class="glyphicon glyphicon-plus"></span> Agregar
+        </button>
+    </div>
+{%- endmacro -%}
+
+{%- macro modal(text, target, class = null, icon = null) -%}
+    {% import _self as btns %}
+
+    {{ btns.button(text, 'button', class, icon, ('data-toggle=modal data-target=#' ~ target)) }}
+{%- endmacro -%}
