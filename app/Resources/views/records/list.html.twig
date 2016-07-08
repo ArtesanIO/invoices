@@ -1,0 +1,38 @@
+{% extends 'blocks.html.twig' %}
+
+{% block subtitle_section %} Records {% endblock %}
+
+{% block content %}
+  {% import 'AppBundle::Components/buttons.html.twig' as buttons %}
+
+  <div class="col-lg-3">
+    <div class="panel panel-default panel-body">
+      <form class="" action="" method="post">
+        {{ form_widget(records_form) }}
+        {{ buttons.submit() }}
+      </form>
+    </div>
+  </div>
+  <div class="col-lg-9">
+    <div class="panel panel-default panel-body">
+      <table class="table table-condensed">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Value</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for record in records %}
+          <tr>
+            <td>{{ record.id }}</td>
+            <td>{{ record.value }}</td>
+            <td>{{ record.description }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}

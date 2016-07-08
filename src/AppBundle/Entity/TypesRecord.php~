@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Categorias
+ * TiposRegistro
  *
  * @ORM\Table()
  * @ORM\Entity
  */
-class Categories
+class TypesRecord
 {
     /**
      * @var integer
@@ -24,20 +24,14 @@ class Categories
     /**
      * @var string
      *
-     * @ORM\Column(name="category", type="string", length=255)
+     * @ORM\Column(name="typeRecord", type="string", length=255)
      */
-    private $category;
+    private $typeRecord;
 
     /**
-     * @ORM\OneToMany(targetEntity="Records", mappedBy="categories")
+     * @ORM\OneToMany(targetEntity="Records", mappedBy="typesRecord")
      */
     private $records;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Blocks", inversedBy="categories")
-     * @ORM\JoinColumn(name="block_id", referencedColumnName="id")
-     */
-    private $blocks;
     /**
      * Constructor
      */
@@ -57,33 +51,33 @@ class Categories
     }
 
     /**
-     * Set category
+     * Set typeRecord
      *
-     * @param string $category
-     * @return Categories
+     * @param string $typeRecord
+     * @return TypesRecord
      */
-    public function setCategory($category)
+    public function setTypeRecord($typeRecord)
     {
-        $this->category = $category;
+        $this->typeRecord = $typeRecord;
 
         return $this;
     }
 
     /**
-     * Get category
+     * Get typeRecord
      *
      * @return string 
      */
-    public function getCategory()
+    public function getTypeRecord()
     {
-        return $this->category;
+        return $this->typeRecord;
     }
 
     /**
      * Add records
      *
      * @param \AppBundle\Entity\Records $records
-     * @return Categories
+     * @return TypesRecord
      */
     public function addRecord(\AppBundle\Entity\Records $records)
     {
@@ -110,28 +104,5 @@ class Categories
     public function getRecords()
     {
         return $this->records;
-    }
-
-    /**
-     * Set blocks
-     *
-     * @param \AppBundle\Entity\Blocks $blocks
-     * @return Categories
-     */
-    public function setBlocks(\AppBundle\Entity\Blocks $blocks = null)
-    {
-        $this->blocks = $blocks;
-
-        return $this;
-    }
-
-    /**
-     * Get blocks
-     *
-     * @return \AppBundle\Entity\Blocks 
-     */
-    public function getBlocks()
-    {
-        return $this->blocks;
     }
 }

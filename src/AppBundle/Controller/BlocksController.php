@@ -30,31 +30,6 @@ class BlocksController extends Controller
       return $this->render('blocks/list.html.twig', array(
         'blocks' => $blocks
       ));
-        /*$em = $this->getDoctrine()->getManager();
-
-        $registros = $em->getRepository('AppBundle:Registros')->findAll();
-
-        $categorias = $em->getRepository('AppBundle:Categorias');
-
-        $registro = new Registros();
-        $registroForm = $this->createForm(new RegistrosType(), $registro);
-        $registroForm->handleRequest($request);
-
-        if($registroForm->isValid()){
-
-          $em->persist($registro);
-          $em->flush();
-
-          $this->get('session')->getFlashBag()->add('mensaje', 'Registro creado');
-
-          return $this->redirect($this->generateUrl('registros'));
-        }
-
-        return $this->render('registros/registros.html.twig', array(
-          'registro_form' => $registroForm->createView(),
-          'registros'     => $registros
-        ));
-        */
     }
 
     /**

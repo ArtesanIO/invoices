@@ -1,4 +1,4 @@
-buttons:
+actions:
   create: Create
   save: Save
   delete: Delete
@@ -12,6 +12,14 @@ form:
 sections:
   blocks:
     title: Blocks
-    form:
+    titles:
       block: Block
       currencys: Currencys
+  records:
+    title: Records
+    titles:
+      record_date: Record date
+      record_type: Record type
+      category: Category
+      value: Value
+      description: Description

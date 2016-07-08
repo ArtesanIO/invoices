@@ -5,3 +5,10 @@ services:
       - AppBundle:Blocks
     calls:
       - [setContainer, ["@service_container"]]
+
+  records.manager:
+    class: AppBundle\Model\RecordsManager
+    arguments:
+      - AppBundle:Records
+    calls:
+      - [setContainer, ["@service_container"]]

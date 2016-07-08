@@ -65,4 +65,44 @@ class Currencys
     {
         return $this->currency;
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->blocks = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add blocks
+     *
+     * @param \AppBundle\Entity\Blocks $blocks
+     * @return Currencys
+     */
+    public function addBlock(\AppBundle\Entity\Blocks $blocks)
+    {
+        $this->blocks[] = $blocks;
+
+        return $this;
+    }
+
+    /**
+     * Remove blocks
+     *
+     * @param \AppBundle\Entity\Blocks $blocks
+     */
+    public function removeBlock(\AppBundle\Entity\Blocks $blocks)
+    {
+        $this->blocks->removeElement($blocks);
+    }
+
+    /**
+     * Get blocks
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getBlocks()
+    {
+        return $this->blocks;
+    }
 }

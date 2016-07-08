@@ -16,14 +16,13 @@ class BlocksType extends AbstractType
     {
         $builder
             ->add('block', null, array(
-              'label' => 'sections.blocks.form.block'
+              'label' => 'sections.blocks.titles.block'
             ))
             ->add('currencys', 'entity', array(
               'class' => 'AppBundle:Currencys',
               'property' => 'currency',
               'empty_value' => 'form.empty_value',
-              'translation_domain' => 'messages',
-              'label' => 'sections.blocks.form.currencys'
+              'label' => 'sections.blocks.titles.currencys'
             ))
         ;
     }
@@ -34,7 +33,8 @@ class BlocksType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Blocks'
+            'data_class' => 'AppBundle\Entity\Blocks',
+            'translation_domain' => 'messages'
         ));
     }
 

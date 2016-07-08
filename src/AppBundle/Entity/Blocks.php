@@ -121,4 +121,44 @@ class Blocks
     {
         return $this->currencys;
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->records = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add records
+     *
+     * @param \AppBundle\Entity\Records $records
+     * @return Blocks
+     */
+    public function addRecord(\AppBundle\Entity\Records $records)
+    {
+        $this->records[] = $records;
+
+        return $this;
+    }
+
+    /**
+     * Remove records
+     *
+     * @param \AppBundle\Entity\Records $records
+     */
+    public function removeRecord(\AppBundle\Entity\Records $records)
+    {
+        $this->records->removeElement($records);
+    }
+
+    /**
+     * Get records
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRecords()
+    {
+        return $this->records;
+    }
 }

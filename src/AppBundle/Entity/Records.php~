@@ -188,27 +188,4 @@ class Records
     {
         return $this->categories;
     }
-
-    /**
-     * Set recordDate
-     *
-     * @param \DateTime $recordDate
-     * @return Records
-     */
-    public function setRecordDate($recordDate)
-    {
-        $this->recordDate = $recordDate;
-
-        return $this;
-    }
-
-    /**
-     * Get recordDate
-     *
-     * @return \DateTime 
-     */
-    public function getRecordDate()
-    {
-        return $this->recordDate;
-    }
 }

@@ -3,3 +3,8 @@ services:
         class: AppBundle\Form\BlocksType
         tags:
             - { name: form.type, alias: blocks }
+
+    records.type:
+        class: AppBundle\Form\RecordsType
+        tags:
+            - { name: form.type, alias: records }
