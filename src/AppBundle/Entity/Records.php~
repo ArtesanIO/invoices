@@ -107,6 +107,10 @@ class Records
     {
         $this->value = $value;
 
+        if($this->getTypesRecord()->getId() == 2){
+          $this->value = -1 * $this->value;
+        }
+
         return $this;
     }
 
@@ -187,5 +191,28 @@ class Records
     public function getCategories()
     {
         return $this->categories;
+    }
+
+    /**
+     * Set recordDate
+     *
+     * @param \DateTime $recordDate
+     * @return Records
+     */
+    public function setRecordDate($recordDate)
+    {
+        $this->recordDate = $recordDate;
+
+        return $this;
+    }
+
+    /**
+     * Get recordDate
+     *
+     * @return \DateTime
+     */
+    public function getRecordDate()
+    {
+        return $this->recordDate;
     }
 }

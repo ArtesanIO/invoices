@@ -1,6 +1,6 @@
 {% extends 'blocks.html.twig' %}
 
-{% block subtitle_section %} Records {% endblock %}
+{% block subtitle_section %}{{ 'sections.records.title'|trans }}{% endblock %}
 
 {% block content %}
   {% import 'AppBundle::Components/buttons.html.twig' as buttons %}
@@ -19,16 +19,20 @@
         <thead>
           <tr>
             <th>#</th>
-            <th>Value</th>
-            <th>Description</th>
+            <th>{{ 'sections.records.titles.description'|trans }}</th>
+            <th>{{ 'sections.records.titles.value'|trans }}</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
           {% for record in records %}
           <tr>
             <td>{{ record.id }}</td>
-            <td>{{ record.value }}</td>
             <td>{{ record.description }}</td>
+            <td>{{ record.value }}</td>
+            <td class="text-right">
+              {{ buttons.action('actions.edit'|trans, { 'path': 'records', 'args': { 'block': 1 } }) }}
+            </td>
           </tr>
           {% endfor %}
         </tbody>

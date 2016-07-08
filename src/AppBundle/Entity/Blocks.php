@@ -155,10 +155,21 @@ class Blocks
     /**
      * Get records
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getRecords()
     {
         return $this->records;
+    }
+
+    public function getRecordsTotal()
+    {
+      $total = 0;
+
+      foreach($this->getRecords() as $record){
+        $total += $record->getValue();
+      }
+
+      return $total;
     }
 }

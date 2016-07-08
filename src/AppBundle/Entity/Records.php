@@ -107,6 +107,10 @@ class Records
     {
         $this->value = $value;
 
+        if($this->getTypesRecord()->getId() == 2){
+          $this->value = -1 * $this->value;
+        }
+
         return $this;
     }
 
@@ -205,7 +209,7 @@ class Records
     /**
      * Get recordDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getRecordDate()
     {

@@ -33,7 +33,7 @@ class RecordsType extends AbstractType
               'empty_value' => 'Seleccione',
               'label' => 'sections.records.titles.category',
             ))
-            ->add('value', null, array(
+            ->add('value', 'number', array(
               'label' => 'sections.records.titles.value',
             ))
             ->add('description','textarea', array(

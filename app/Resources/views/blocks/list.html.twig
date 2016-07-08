@@ -17,6 +17,7 @@
           <td>{{ block.id }}</td>
           <td>{{ block.block }}</td>
           <td>{{ block.currencys.currency }}</td>
+          <td>{{ block.recordsTotal }}</td>
           <td class="text-right">
             {{ buttons.action('actions.edit'|trans, { 'path': 'records', 'args': { 'block': block.id } }) }}
           </td>
