@@ -1,11 +1,17 @@
 {% extends 'blocks.html.twig' %}
 
-{% block subtitle_section %}{{ 'sections.records.title'|trans }}{% endblock %}
+{% block subtitle_section %}{{ block.block }}{% endblock %}
 
 {% block content %}
   {% import 'AppBundle::Components/buttons.html.twig' as buttons %}
 
   <div class="col-lg-3">
+      <div class="panel panel-default panel-body">
+          <div class="btn-group">
+            <button type="button" class="btn btn-default">Categories</button>
+            <button type="button" class="btn btn-default">Config</button>
+          </div>
+      </div>
     <div class="panel panel-default panel-body">
       <form class="" action="" method="post">
         {{ form_widget(records_form) }}
@@ -20,7 +26,8 @@
           <tr>
             <th>#</th>
             <th>{{ 'sections.records.titles.description'|trans }}</th>
-            <th>{{ 'sections.records.titles.value'|trans }}</th>
+            <th class="text-right">{{ 'sections.records.titles.record_date'|trans }}</th>
+            <th class="text-right">{{ 'sections.records.titles.value'|trans }}</th>
             <th></th>
           </tr>
         </thead>
@@ -29,12 +36,18 @@
           <tr>
             <td>{{ record.id }}</td>
             <td>{{ record.description }}</td>
-            <td>{{ record.value }}</td>
+            <td class="text-right">{{ record.recordDate|date('d-m-Y') }}</td>
+            <td class="text-right">{{ record.value }}</td>
             <td class="text-right">
               {{ buttons.action('actions.edit'|trans, { 'path': 'records', 'args': { 'block': 1 } }) }}
-            </td>
+          </td>
           </tr>
           {% endfor %}
+          <tr>
+                <th colspan="3"></th>
+                <th class="text-right"><h3>${{ block.recordsTotal }}</h3></th>
+                <th></th>
+          </tr>
         </tbody>
       </table>
     </div>

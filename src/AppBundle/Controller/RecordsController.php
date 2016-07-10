@@ -36,6 +36,7 @@ class RecordsController extends Controller
       $records = $recordsManager->getRepository()->findOneBy(array('blocks'=> $block));
 
       return $this->render('records/list.html.twig', array(
+        'block' => $block,
         'records_form' => $recordsForm->createView(),
         'records'     => $block->getRecords()
       ));

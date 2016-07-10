@@ -64,6 +64,11 @@ class Records
      */
     private $categories;
 
+    public function __construct()
+    {
+            $this->recordDate = new \Datetime("now");
+    }
+
     /**
      * Get id
      *
