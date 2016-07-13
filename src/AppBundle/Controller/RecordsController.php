@@ -2,9 +2,10 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Blocks;
+use AppBundle\Entity\Records;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use AppBundle\Entity\Blocks;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -43,21 +44,28 @@ class RecordsController extends Controller
     }
 
     /**
-     * @Route("/editar/{id}", name="registro_editar", options={"expose": true})
+     * @Route("/{block}/records{record}", name="records_edit")
      */
-
-    public function registroEditarAction($id)
+    public function editAction(Blocks $block, Records $record, Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
+      $recordsManager = $this->get('records.manager');
 
-        $registro = $em->getRepository("AppBundle:Registros")->find($id);
+      $records = $recordsManager->getRepository()->findOneBy(array('id' => $record->getid(), 'blocks' => $block));
 
-        $registroForm = $this->createForm(new RegistrosType(), $registro);
+      $recordsForm = $this->createForm('records', $records)->handleRequest($request);
 
-        $htmlForm = $this->renderView('registros/registro-form.html.twig', array(
-          'registro_form' => $registroForm->createView()
-        ));
+      if($recordsForm->isValid()){
+        $records->setBlocks($block);
+        $recordsManager->save($records);
+        return $this->redirect($this->generateUrl('records_edit', array('block' => $block->getId(), 'record' => $record->getId())));
+      }
 
-        return new Response(json_encode($htmlForm));
+      $records = $recordsManager->getRepository()->findOneBy(array('blocks'=> $block));
+
+      return $this->render('records/edit.html.twig', array(
+        'block' => $block,
+        'records_form' => $recordsForm->createView(),
+        'records'     => $block->getRecords()
+      ));
     }
 }

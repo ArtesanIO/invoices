@@ -8,7 +8,7 @@
 
 {%- macro action(text, path = null, class, icon = null, htmlAttributes = null, name = null, value = null) -%}
 
-    {% set path = (path.args) ? path(path.path, path.args) : path(path.path)  %}
+    {% set path = (path.args is defined) ? path(path.path, path.args) : path(path.path)  %}
 
     <a href="{{ path }}" name="{{ name }}" class="btn btn-{{ class|default('default') }}" {{ htmlAttributes }} value="{{ value }}">
         {% if icon %}<i class="glyphicon glyphicon-{{ icon }}"></i> {% endif %} {{ text }}
