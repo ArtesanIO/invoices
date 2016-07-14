@@ -38,6 +38,12 @@ class Categories
      * @ORM\JoinColumn(name="block_id", referencedColumnName="id")
      */
     private $blocks;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="TypesRecord", inversedBy="categories")
+     * @ORM\JoinColumn(name="type_record_id", referencedColumnName="id")
+     */
+    private $typesRecord;
     /**
      * Constructor
      */
@@ -49,7 +55,7 @@ class Categories
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -72,7 +78,7 @@ class Categories
     /**
      * Get category
      *
-     * @return string 
+     * @return string
      */
     public function getCategory()
     {
@@ -105,7 +111,7 @@ class Categories
     /**
      * Get records
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getRecords()
     {
@@ -128,10 +134,33 @@ class Categories
     /**
      * Get blocks
      *
-     * @return \AppBundle\Entity\Blocks 
+     * @return \AppBundle\Entity\Blocks
      */
     public function getBlocks()
     {
         return $this->blocks;
+    }
+
+    /**
+     * Set typesRecord
+     *
+     * @param \AppBundle\Entity\TypesRecord $typesRecord
+     * @return Categories
+     */
+    public function setTypesRecord(\AppBundle\Entity\TypesRecord $typesRecord = null)
+    {
+        $this->typesRecord = $typesRecord;
+
+        return $this;
+    }
+
+    /**
+     * Get typesRecord
+     *
+     * @return \AppBundle\Entity\TypesRecord 
+     */
+    public function getTypesRecord()
+    {
+        return $this->typesRecord;
     }
 }

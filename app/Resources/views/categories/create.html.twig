@@ -1,0 +1,15 @@
+{% extends 'blocks.html.twig' %}
+
+{% block subtitle_section %} {{ 'actions.create'|trans }} {% endblock %}
+
+{% block content %}
+  {% import 'AppBundle::Components/buttons.html.twig' as buttons %}
+  <div class="panel panel-default col-lg-4">
+    <div class="panel-body">
+      <form class="" action="" method="post">
+        {{ form_widget(blocks_form) }}
+        {{ buttons.submit() }}
+      </form>
+    </div>
+  </div>
+{% endblock%}

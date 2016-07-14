@@ -32,6 +32,12 @@ class TypesRecord
      * @ORM\OneToMany(targetEntity="Records", mappedBy="typesRecord")
      */
     private $records;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Categories", mappedBy="typesRecord")
+     */
+    private $categories;
+
     /**
      * Constructor
      */
@@ -43,7 +49,7 @@ class TypesRecord
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -66,7 +72,7 @@ class TypesRecord
     /**
      * Get typeRecord
      *
-     * @return string 
+     * @return string
      */
     public function getTypeRecord()
     {
@@ -99,10 +105,43 @@ class TypesRecord
     /**
      * Get records
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getRecords()
     {
         return $this->records;
+    }
+
+    /**
+     * Add categories
+     *
+     * @param \AppBundle\Entity\Categories $categories
+     * @return TypesRecord
+     */
+    public function addCategory(\AppBundle\Entity\Categories $categories)
+    {
+        $this->categories[] = $categories;
+
+        return $this;
+    }
+
+    /**
+     * Remove categories
+     *
+     * @param \AppBundle\Entity\Categories $categories
+     */
+    public function removeCategory(\AppBundle\Entity\Categories $categories)
+    {
+        $this->categories->removeElement($categories);
+    }
+
+    /**
+     * Get categories
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCategories()
+    {
+        return $this->categories;
     }
 }

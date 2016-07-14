@@ -42,6 +42,11 @@ class Blocks
      */
     private $records;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Categories", mappedBy="blocks")
+     */
+    private $categories;
+
 
     /**
      * Get id
@@ -171,5 +176,38 @@ class Blocks
       }
 
       return $total;
+    }
+
+    /**
+     * Add categories
+     *
+     * @param \AppBundle\Entity\Categories $categories
+     * @return Blocks
+     */
+    public function addCategory(\AppBundle\Entity\Categories $categories)
+    {
+        $this->categories[] = $categories;
+
+        return $this;
+    }
+
+    /**
+     * Remove categories
+     *
+     * @param \AppBundle\Entity\Categories $categories
+     */
+    public function removeCategory(\AppBundle\Entity\Categories $categories)
+    {
+        $this->categories->removeElement($categories);
+    }
+
+    /**
+     * Get categories
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCategories()
+    {
+        return $this->categories;
     }
 }

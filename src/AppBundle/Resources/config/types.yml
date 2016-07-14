@@ -4,6 +4,11 @@ services:
         tags:
             - { name: form.type, alias: blocks }
 
+    blocks_categories.type:
+        class: AppBundle\Form\BlocksCategoriesType
+        tags:
+            - { name: form.type, alias: blocks_categories }
+
     records.type:
         class: AppBundle\Form\RecordsType
         tags:

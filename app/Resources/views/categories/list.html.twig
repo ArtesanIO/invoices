@@ -1,0 +1,24 @@
+{% extends 'blocks.html.twig' %}
+
+{% block content %}
+    {% import 'categories/block-categories.html.twig' as form %}
+    <div class="col-lg-5 panel panel-default panel-body">
+      <form class="" action="" method="post">
+          {{ form_widget(blocks_categories_form._token) }}
+
+          <table class="table table-condensed">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th style="width:200px">Fecha</th>
+                </tr>
+            </thead>
+            <tbody class="collections" data-prototype="{{ form.categories(blocks_categories_form.categories.vars.prototype)|e }}">
+                {% for categories in blocks_categories_form.categories %}
+                    {{ form.categories(categories) }}
+                {% endfor %}
+            </tbody>
+            </table>
+      </form>
+  </div>
+{% endblock %}

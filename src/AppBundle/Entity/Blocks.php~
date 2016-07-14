@@ -42,6 +42,11 @@ class Blocks
      */
     private $records;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Categories", mappedBy="blocks")
+     */
+    private $categories;
+
 
     /**
      * Get id
@@ -166,8 +171,8 @@ class Blocks
     {
       $total = 0;
 
-      foreach($this->getRecords()->getValue as $value){
-        $total += $value;
+      foreach($this->getRecords() as $record){
+        $total += $record->getValue();
       }
 
       return $total;
