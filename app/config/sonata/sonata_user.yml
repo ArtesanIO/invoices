@@ -1,0 +1,14 @@
+sonata_user:
+    class:
+        user: AppBundle\Entity\Users
+        group: AppBundle\Entity\Groups
+    # admin:
+    #     user:
+    #         class: AppBundle\Admin\UsersAdmin
+    #     group:
+    #         class: AppBundle\Admin\GroupsAdmin
+    security_acl: false
+    
+    manager_type: orm # can be orm or mongodb
+    table:
+        user_group: fos_user_user_group
