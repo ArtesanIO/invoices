@@ -1,4 +1,6 @@
 sonata_admin:
+    templates:
+      layout: AppBundle::standard_layout.html.twig
     options:
         use_select2:   true # disable select2
     templates:
