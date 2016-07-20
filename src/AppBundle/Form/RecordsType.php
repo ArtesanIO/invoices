@@ -18,7 +18,9 @@ class RecordsType extends AbstractType
         $builder
             ->add('recordDate', 'date', array(
               'placeholder' => array('year' => 'Año', 'month' => 'Mes', 'day' => 'Día'),
-              'label' => 'sections.records.titles.record_date'
+              'label' => 'sections.records.titles.record_date',
+                'input' => 'datetime',
+                'widget' => 'single_text',
             ))
             ->add('typesRecord', 'entity', array(
               'class'       => 'AppBundle:TypesRecord',

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Blocks;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -52,25 +53,23 @@ class BlocksController extends Controller
     }
 
     /**
-     * @Route("/{id}", name="blocks_edit")
+     * @Route("/{block}/edit", name="blocks_edit")
      */
-    public function editAction($id, Request $request)
+    public function editAction(Blocks $block, Request $request)
     {
-      exit('Block edit');
       $blocksManager = $this->get('blocks.manager');
 
-      $blocks = $blocksManager->create();
-
-      $blocksForm = $this->createForm('blocks', $blocks)->handleRequest($request);
+      $blocksForm = $this->createForm('blocks', $block)->handleRequest($request);
 
       if($blocksForm->isValid()){
-        $blocksManager->save($blocks);
+        $blocksManager->save($block);
 
         return $this->redirect($this->generateUrl('blocks'));
       }
 
-      return $this->render('blocks/create.html.twig', array(
-        'blocks_form' => $blocksForm->createView()
+      return $this->render('blocks/edit.html.twig', array(
+        'blocks_form' => $blocksForm->createView(),
+          'block' => $block
       ));
     }
 

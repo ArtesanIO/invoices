@@ -1,4 +1,4 @@
-{% extends 'blocks.html.twig' %}
+{% extends 'blocks/block.html.twig' %}
 
 {% block subtitle_section %}{{ block.block }}{% endblock %}
 
@@ -6,12 +6,7 @@
   {% import 'AppBundle::Components/buttons.html.twig' as buttons %}
 
   <div class="col-lg-3">
-      <div class="panel panel-default panel-body">
-          <div class="btn-group">
-            <a href="{{ path('categories', {'block': block.id }) }}" class="btn btn-default">Categories</a>
-            <button type="button" class="btn btn-default">Config</button>
-          </div>
-      </div>
+
     <div class="panel panel-default panel-body">
       <form class="" action="" method="post">
         {{ form_widget(records_form) }}

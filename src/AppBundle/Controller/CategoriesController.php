@@ -24,7 +24,8 @@ class CategoriesController extends Controller
       $blockCategoriesForm = $this->createForm('blocks_categories', $block)->handleRequest($request);
 
       return $this->render('categories/list.html.twig', array(
-        'blocks_categories_form' => $blockCategoriesForm->createView()
+        'blocks_categories_form' => $blockCategoriesForm->createView(),
+        'block' => $block
       ));
     }
 }
