@@ -16,7 +16,10 @@ class CategoriesType extends AbstractType
     {
         $builder
             ->add('category')
-            //->add('typesRecord')
+            ->add('typesRecord','entity', array(
+                'class' => 'AppBundle:TypesRecord',
+                'property' => 'typeRecord'
+            ))
         ;
     }
 

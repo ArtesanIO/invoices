@@ -10,10 +10,12 @@
 namespace AppBundle\Model;
 
 use AppBundle\Model\ModelManagerInterface;
+use \Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\RequestStack;
+
 
 abstract class ModelManager extends ContainerAware implements ModelManagerInterface
 {
@@ -113,5 +115,24 @@ abstract class ModelManager extends ContainerAware implements ModelManagerInterf
     public function tableFields()
     {
         return array('id');
+    }
+
+    public function collectionsAdd($model)
+    {
+        $original = new ArrayCollection();
+
+        foreach($model as $item){
+            $original->add($item);
+        }
+        return $original;
+    }
+
+    public function collectionsSave($model, $original)
+    {
+        foreach ($original as $i) {
+            if(false === $model->contains($i)){
+                $this->em()->remove($i);
+            }
+        }
     }
 }

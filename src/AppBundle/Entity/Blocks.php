@@ -43,7 +43,7 @@ class Blocks
     private $records;
 
     /**
-     * @ORM\OneToMany(targetEntity="Categories", mappedBy="blocks")
+     * @ORM\OneToMany(targetEntity="Categories", mappedBy="blocks", cascade={"persist"})
      */
     private $categories;
 
@@ -186,9 +186,8 @@ class Blocks
      */
     public function addCategory(\AppBundle\Entity\Categories $categories)
     {
-        $this->categories[] = $categories;
-
-        return $this;
+        $categories->setBlocks($this);
+        $this->categories->add($categories);
     }
 
     /**
