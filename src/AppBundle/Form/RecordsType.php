@@ -22,18 +22,12 @@ class RecordsType extends AbstractType
                 'input' => 'datetime',
                 'widget' => 'single_text',
             ))
-            ->add('typesRecord', 'entity', array(
-              'class'       => 'AppBundle:TypesRecord',
-              'property'    => 'typeRecord',
-              'empty_value' => 'Seleccione',
-              'label' => 'sections.records.titles.record_type',
-              'expanded' => true
-            ))
             ->add('categories', 'entity', array(
               'class'       => 'AppBundle:Categories',
               'property'    => 'category',
               'empty_value' => 'Seleccione',
               'label' => 'sections.records.titles.category',
+              'group_by' => 'typesRecord.typeRecord'
             ))
             ->add('value', 'number', array(
               'label' => 'sections.records.titles.value',
