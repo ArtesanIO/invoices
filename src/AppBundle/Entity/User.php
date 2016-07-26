@@ -18,9 +18,48 @@ class User extends BaseUser
      */
     protected $id;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Blocks", mappedBy="User", cascade={"persist"})
+     */
+
+    private $blocks;
+
     public function __construct()
     {
         parent::__construct();
         // your own logic
+    }
+
+    /**
+     * Add blocks
+     *
+     * @param \AppBundle\Entity\Blocks $blocks
+     * @return User
+     */
+    public function addBlock(\AppBundle\Entity\Blocks $blocks)
+    {
+        $this->blocks[] = $blocks;
+
+        return $this;
+    }
+
+    /**
+     * Remove blocks
+     *
+     * @param \AppBundle\Entity\Blocks $blocks
+     */
+    public function removeBlock(\AppBundle\Entity\Blocks $blocks)
+    {
+        $this->blocks->removeElement($blocks);
+    }
+
+    /**
+     * Get blocks
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getBlocks()
+    {
+        return $this->blocks;
     }
 }

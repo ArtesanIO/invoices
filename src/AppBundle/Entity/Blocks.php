@@ -47,6 +47,11 @@ class Blocks
      */
     private $categories;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="blocks")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $users;
 
     /**
      * Get id
@@ -208,5 +213,28 @@ class Blocks
     public function getCategories()
     {
         return $this->categories;
+    }
+
+    /**
+     * Set users
+     *
+     * @param \AppBundle\Entity\User $users
+     * @return Blocks
+     */
+    public function setUsers(\AppBundle\Entity\User $users = null)
+    {
+        $this->users = $users;
+
+        return $this;
+    }
+
+    /**
+     * Get users
+     *
+     * @return \AppBundle\Entity\User 
+     */
+    public function getUsers()
+    {
+        return $this->users;
     }
 }

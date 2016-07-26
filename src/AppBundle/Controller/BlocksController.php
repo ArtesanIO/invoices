@@ -23,7 +23,7 @@ class BlocksController extends Controller
 
       $blocksManager = $this->get('blocks.manager');
 
-      $blocks = $blocksManager->getRepository()->findAll();
+      $blocks = $blocksManager->getRepository()->findBy(["users" => $this->getUser()]);
 
       return $this->render('blocks/list.html.twig', array(
         'blocks' => $blocks
@@ -42,6 +42,9 @@ class BlocksController extends Controller
       $blocksForm = $this->createForm('blocks', $blocks)->handleRequest($request);
 
       if($blocksForm->isValid()){
+
+        $blocks->setUsers($this->getUser());
+
         $blocksManager->save($blocks);
 
         return $this->redirect($this->generateUrl('blocks'));

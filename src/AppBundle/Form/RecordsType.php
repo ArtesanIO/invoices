@@ -5,7 +5,7 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use AppBundle\Form\EventListener\AddCategoriasFieldSubscriber;
+use AppBundle\Form\EventListener\RecordsSubscriber;
 
 class RecordsType extends AbstractType
 {
@@ -35,8 +35,9 @@ class RecordsType extends AbstractType
             ->add('description','textarea', array(
               'label' => 'sections.records.titles.description',
             ))
-
         ;
+
+        $builder->addEventSubscriber(new RecordsSubscriber($options['block']));
     }
 
     /**
@@ -46,8 +47,15 @@ class RecordsType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'AppBundle\Entity\Records',
-            'translation_domain' => 'messages'
+            'translation_domain' => 'messages',
+            'required' => false
         ));
+
+        $resolver->setRequired(['block']);
+
+        $resolver->setAllowedTypes([
+           'block' => 'object'
+        ]);
     }
 
     /**

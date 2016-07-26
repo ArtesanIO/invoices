@@ -43,10 +43,15 @@ class Blocks
     private $records;
 
     /**
-     * @ORM\OneToMany(targetEntity="Categories", mappedBy="blocks")
+     * @ORM\OneToMany(targetEntity="Categories", mappedBy="blocks", cascade={"persist"})
      */
     private $categories;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="blocks")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $users;
 
     /**
      * Get id
@@ -186,9 +191,8 @@ class Blocks
      */
     public function addCategory(\AppBundle\Entity\Categories $categories)
     {
-        $this->categories[] = $categories;
-
-        return $this;
+        $categories->setBlocks($this);
+        $this->categories->add($categories);
     }
 
     /**

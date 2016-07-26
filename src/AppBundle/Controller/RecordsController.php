@@ -26,7 +26,7 @@ class RecordsController extends Controller
 
       $records = $recordsManager->create();
 
-      $recordsForm = $this->createForm('records', $records)->handleRequest($request);
+      $recordsForm = $this->createForm('records', $records, ['block' => $block])->handleRequest($request);
 
       if($recordsForm->isValid()){
         $records->setBlocks($block);
@@ -34,7 +34,7 @@ class RecordsController extends Controller
         return $this->redirect($this->generateUrl('records', array('block' => $block->getId())));
       }
 
-      $records = $recordsManager->getRepository()->findOneBy(array('blocks'=> $block));
+      $records = $recordsManager->getRepository()->findBy(array('blocks'=> $block));
 
       return $this->render('records/list.html.twig', array(
         'block' => $block,

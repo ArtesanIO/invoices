@@ -29,11 +29,6 @@ class TypesRecord
     private $typeRecord;
 
     /**
-     * @ORM\OneToMany(targetEntity="Records", mappedBy="typesRecord")
-     */
-    private $records;
-
-    /**
      * @ORM\OneToMany(targetEntity="Categories", mappedBy="typesRecord")
      */
     private $categories;
@@ -77,39 +72,6 @@ class TypesRecord
     public function getTypeRecord()
     {
         return $this->typeRecord;
-    }
-
-    /**
-     * Add records
-     *
-     * @param \AppBundle\Entity\Records $records
-     * @return TypesRecord
-     */
-    public function addRecord(\AppBundle\Entity\Records $records)
-    {
-        $this->records[] = $records;
-
-        return $this;
-    }
-
-    /**
-     * Remove records
-     *
-     * @param \AppBundle\Entity\Records $records
-     */
-    public function removeRecord(\AppBundle\Entity\Records $records)
-    {
-        $this->records->removeElement($records);
-    }
-
-    /**
-     * Get records
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getRecords()
-    {
-        return $this->records;
     }
 
     /**
