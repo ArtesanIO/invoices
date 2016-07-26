@@ -1,0 +1,9 @@
+{% extends "blocks/config.html.twig" %}
+
+{% block content_config %}
+    {% import 'AppBundle::Components/buttons.html.twig' as buttons %}
+    <form action="" method="post" class="col-lg-4">
+        {{ form_widget(blocks_form) }}
+        {{ buttons.submit() }}
+    </form>
+{% endblock %}

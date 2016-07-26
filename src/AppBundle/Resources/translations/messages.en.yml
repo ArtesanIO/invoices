@@ -23,3 +23,5 @@ sections:
       category: Category
       value: Value
       description: Description
+  friends:
+      title: Friends

@@ -214,4 +214,27 @@ class Blocks
     {
         return $this->categories;
     }
+
+    /**
+     * Set users
+     *
+     * @param \AppBundle\Entity\User $users
+     * @return Blocks
+     */
+    public function setUsers(\AppBundle\Entity\User $users = null)
+    {
+        $this->users = $users;
+
+        return $this;
+    }
+
+    /**
+     * Get users
+     *
+     * @return \AppBundle\Entity\User 
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
 }

@@ -12,3 +12,17 @@ services:
       - AppBundle:Records
     calls:
       - [setContainer, ["@service_container"]]
+
+  users.manager:
+        class: AppBundle\Model\UsersManager
+        arguments:
+          - AppBundle:User
+        calls:
+          - [setContainer, ["@service_container"]]
+
+  friends.manager:
+      class: AppBundle\Model\FriendsManager
+      arguments:
+        - AppBundle:Friends
+      calls:
+        - [setContainer, ["@service_container"]]

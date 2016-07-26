@@ -24,6 +24,16 @@ class User extends BaseUser
 
     private $blocks;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Friends", mappedBy="guests", cascade={"persist"})
+     */
+    private $hosts;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Friends", mappedBy="hosts", cascade={"persist"})
+     */
+    private $guests;
+
     public function __construct()
     {
         parent::__construct();
@@ -61,5 +71,71 @@ class User extends BaseUser
     public function getBlocks()
     {
         return $this->blocks;
+    }
+
+    /**
+     * Add hosts
+     *
+     * @param \AppBundle\Entity\Friends $hosts
+     * @return User
+     */
+    public function addHost(\AppBundle\Entity\Friends $hosts)
+    {
+        $this->hosts[] = $hosts;
+
+        return $this;
+    }
+
+    /**
+     * Remove hosts
+     *
+     * @param \AppBundle\Entity\Friends $hosts
+     */
+    public function removeHost(\AppBundle\Entity\Friends $hosts)
+    {
+        $this->hosts->removeElement($hosts);
+    }
+
+    /**
+     * Get hosts
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getHosts()
+    {
+        return $this->hosts;
+    }
+
+    /**
+     * Add guests
+     *
+     * @param \AppBundle\Entity\Friends $guests
+     * @return User
+     */
+    public function addGuest(\AppBundle\Entity\Friends $guests)
+    {
+        $this->guests[] = $guests;
+
+        return $this;
+    }
+
+    /**
+     * Remove guests
+     *
+     * @param \AppBundle\Entity\Friends $guests
+     */
+    public function removeGuest(\AppBundle\Entity\Friends $guests)
+    {
+        $this->guests->removeElement($guests);
+    }
+
+    /**
+     * Get guests
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getGuests()
+    {
+        return $this->guests;
     }
 }

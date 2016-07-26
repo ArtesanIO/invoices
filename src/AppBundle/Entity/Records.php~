@@ -28,7 +28,6 @@ class Records
      * @var string
      *
      * @ORM\Column(name="description", type="string", length=255)
-     * @Assert\NotBlank(message="La descripción es importante para recordar la importancia del registro")
      */
     private $description;
 
@@ -51,12 +50,6 @@ class Records
      * @ORM\JoinColumn(name="block_id", referencedColumnName="id")
      */
     private $blocks;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="TypesRecord", inversedBy="records")
-     * @ORM\JoinColumn(name="type_record_id", referencedColumnName="id")
-     */
-    private $typesRecord;
 
     /**
      * @ORM\ManyToOne(targetEntity="Categories", inversedBy="records")
@@ -112,7 +105,7 @@ class Records
     {
         $this->value = $value;
 
-        if($this->getTypesRecord()->getId() == 2){
+        if($this->getCategories()->getTypesRecord()->getId() == 2){
           $this->value = -1 * $this->value;
         }
 
@@ -150,29 +143,6 @@ class Records
     public function getBlocks()
     {
         return $this->blocks;
-    }
-
-    /**
-     * Set typesRecord
-     *
-     * @param \AppBundle\Entity\TypesRecord $typesRecord
-     * @return Records
-     */
-    public function setTypesRecord(\AppBundle\Entity\TypesRecord $typesRecord = null)
-    {
-        $this->typesRecord = $typesRecord;
-
-        return $this;
-    }
-
-    /**
-     * Get typesRecord
-     *
-     * @return \AppBundle\Entity\TypesRecord
-     */
-    public function getTypesRecord()
-    {
-        return $this->typesRecord;
     }
 
     /**

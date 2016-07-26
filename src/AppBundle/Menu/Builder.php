@@ -15,7 +15,7 @@ class Builder implements ContainerAwareInterface
         $menu = $factory->createItem('root');
         $menu->setChildrenAttribute('class', 'nav navbar-nav');
         $menu->addChild('Blocks', array('route' => 'blocks'));
-        $menu->addChild('Reports', array('route' => 'blocks_create'));
+        $menu->addChild('Buscar amigos', array('route' => 'friends'));
         $menu->addChild('Block', array('route' => 'blocks_create'));
         return $menu;
     }
