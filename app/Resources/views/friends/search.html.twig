@@ -3,11 +3,22 @@
 {% block content_friends %}
 
   <div class="panel-heading">{{ 'sections.friends.titles.search'|trans }}</div>
+  <table class="table table-condensed">
+    <tbody>
+      {% for user in users  %}
+      <tr>
+        <td>{{ user.username }}</td>
+        <td class="text-right">
+          <a href="{{ path('friends_invitations_send', {guest: user.id}) }}" class="btn btn-default">Send invitation</a>
+        </td>
+      </tr>
+      {% endfor %}
+
+    </tbody>
+  </table>
   <div class="panel-body">
     <ul class="list-group">
-      {% for user in users  %}
-        <li class="list-group-item">{{ user.username }}</li>
-      {% endfor %}
+
     </ul>
   </div>
 

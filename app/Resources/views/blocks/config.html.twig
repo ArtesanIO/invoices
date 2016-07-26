@@ -1,17 +1,18 @@
 {% extends "blocks/block.html.twig" %}
 
 {% block content %}
-        <div class="panel panel-default panel-body col-lg-2">
-            <ul class="list-group ">
-                <a href="{{ path('blocks_edit', {'block': block.id })  }}" class="list-group-item">Edit</a>
-                <a href="{{ path('categories', {'block': block.id })  }}" class="list-group-item">Categories</a>
-                <a href="#" class="list-group-item">Users</a>
-            </ul>
-        </div>
-
-        <div class="col-lg-10">
-            <div class="panel panel-default panel-body">
-                {% block content_config %}{% endblock %}
-            </div>
-        </div>
+  <div class="col-lg-2">
+    <div class="panel panel-default panel-body ">
+        <ul class="list-group ">
+            <a href="{{ path('blocks_edit', {'block': block.id })  }}" class="list-group-item">Edit</a>
+            <a href="{{ path('categories', {'block': block.id })  }}" class="list-group-item">Categories</a>
+            <a href="#" class="list-group-item">Users</a>
+        </ul>
+    </div>
+  </div>
+  <div class="col-lg-10">
+      <div class="panel panel-default panel-body">
+          {% block content_config %}{% endblock %}
+      </div>
+  </div>
 {% endblock %}
