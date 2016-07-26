@@ -1,0 +1,19 @@
+{% extends 'friends.html.twig' %}
+
+{% block content %}
+<div class="col-lg-2">
+  <div class="panel panel-default panel-body ">
+      <ul class="list-group ">
+          <a href="{{ path('friends') }}" class="list-group-item">{{ 'sections.friends.title'|trans }}</a>
+          <a href="{{ path('friends_search') }}" class="list-group-item">{{ 'sections.friends.titles.search'|trans }}</a>
+          <a href="{{ path('friends_invitations') }}" class="list-group-item">{{ 'sections.friends.titles.invitations'|trans }}</a>
+      </ul>
+  </div>
+</div>
+<div class="col-lg-10">
+  <div class="panel panel-default panel-body ">
+    {% block content_friends %}{% endblock %}
+  </div>
+</div>
+
+{% endblock %}

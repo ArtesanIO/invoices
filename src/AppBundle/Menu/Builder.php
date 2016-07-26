@@ -14,9 +14,12 @@ class Builder implements ContainerAwareInterface
     {
         $menu = $factory->createItem('root');
         $menu->setChildrenAttribute('class', 'nav navbar-nav');
-        $menu->addChild('Blocks', array('route' => 'blocks'));
-        $menu->addChild('Buscar amigos', array('route' => 'friends'));
-        $menu->addChild('Block', array('route' => 'blocks_create'));
+
+        $translator = $this->container->get('translator');
+
+        $menu->addChild($translator->trans('sections.blocks.title'), array('route' => 'blocks'));
+        $menu->addChild($translator->trans('sections.friends.title'), array('route' => 'friends'));
+      
         return $menu;
     }
 }

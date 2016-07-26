@@ -30,4 +30,35 @@ class FriendsController extends Controller
         'user' => $user
       ));
     }
+
+    /**
+     * @Route("/search", name="friends_search")
+     */
+    public function searchAction(Request $request)
+    {
+
+      $usersManager = $this->get('users.manager');
+
+      $user = $usersManager->getRepository()->findOneBy(['id' => $this->getUser()]);
+
+      return $this->render('friends/search.html.twig', array(
+        'users' => $usersManager->getRepository()->findAll(),
+      ));
+    }
+
+    /**
+     * @Route("/invitations", name="friends_invitations")
+     */
+    public function invitationsAction(Request $request)
+    {
+
+      $usersManager = $this->get('users.manager');
+
+      $user = $usersManager->getRepository()->findOneBy(['id' => $this->getUser()]);
+
+      return $this->render('friends/invitations.html.twig', array(
+        //'users' => $usersManager->getRepository()->findAll(),
+        'user' => $user
+      ));
+    }
 }

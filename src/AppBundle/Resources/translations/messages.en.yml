@@ -25,3 +25,7 @@ sections:
       description: Description
   friends:
       title: Friends
+      titles:
+        your_friends: Your friends
+        search: Search
+        invitations: Invitations

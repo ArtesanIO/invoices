@@ -2,11 +2,11 @@
 
 {% block content_friends %}
 
-  <div class="panel-heading">{{ 'sections.friends.titles.your_friends'|trans }}</div>
+  <div class="panel-heading">{{ 'sections.friends.titles.search'|trans }}</div>
   <div class="panel-body">
     <ul class="list-group">
-      {% for guest in user.guests  %}
-        <li class="list-group-item">{{ guest.id }}</li>
+      {% for user in users  %}
+        <li class="list-group-item">{{ user.username }}</li>
       {% endfor %}
     </ul>
   </div>
