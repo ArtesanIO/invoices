@@ -51,7 +51,7 @@ class BlocksConfigController extends Controller
 
             $blocksManager->save($block);
 
-            return $this->redirect($this->generateUrl('categories', array("block" => $block->getId())));
+            return $this->redirect($this->generateUrl('blocks_categories', array("block" => $block->getId())));
         }
 
       return $this->render('blocks/config/categories.html.twig', array(
@@ -67,12 +67,17 @@ class BlocksConfigController extends Controller
   {
     $blocksManager = $this->get('blocks.manager');
 
+    $usersOriginal = $blocksManager->collectionsAdd($block->getUsers());
+
     $blocksForm = $this->createForm('block_users', $block)->handleRequest($request);
 
     if($blocksForm->isValid()){
+
+      $blocksManager->collectionsSave($block->getUsers(), $usersOriginal);
+
       $blocksManager->save($block);
 
-      return $this->redirect($this->generateUrl('blocks'));
+      return $this->redirect($this->generateUrl('blocks_users', array("block" => $block->getId())));
     }
 
     return $this->render('blocks/config/users.html.twig', array(

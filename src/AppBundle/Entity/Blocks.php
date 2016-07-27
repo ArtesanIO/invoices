@@ -54,7 +54,7 @@ class Blocks
     private $users;
 
     /**
-     * @ORM\OneToMany(targetEntity="BlocksUsers", mappedBy="blocks")
+     * @ORM\OneToMany(targetEntity="BlocksUsers", mappedBy="blocks", cascade={"persist"})
      */
     private $blocksUsers;
 
@@ -251,9 +251,8 @@ class Blocks
      */
     public function addBlocksUser(\AppBundle\Entity\BlocksUsers $blocksUsers)
     {
-        $this->blocksUsers[] = $blocksUsers;
-
-        return $this;
+        $blocksUsers->setBlocks($this);
+        $this->blocksUsers->add($blocksUsers);
     }
 
     /**
@@ -269,7 +268,7 @@ class Blocks
     /**
      * Get blocksUsers
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getBlocksUsers()
     {
