@@ -11,17 +11,19 @@ class FriendsManager extends ModelManager
     $guests = [];
     $hosts = [];
 
+    $state = 2;
+
     foreach($user->getGuests() as $guest){
-      if($guest->getState() == 2){
+      if($guest->getState() == $state){
         $guests[$guest->getId()]['id'] = $guest->getId();
-        $guests[$guest->getId()]['user'] = $guest->getHosts();
+        $guests[$guest->getId()]['user'] = $guest->getGuests();
       }
     }
 
     foreach($user->getHosts() as $host){
-      if($host->getState() == 2){
+      if($host->getState() == $state){
         $hosts[$host->getId()]['id'] = $host->getId();
-        $hosts[$host->getId()]['user'] = $host->getGuests();
+        $hosts[$host->getId()]['user'] = $host->getHosts();
       }
     }
 
