@@ -1,0 +1,42 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * BlocksUsers
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\BlocksUsersRepository")
+ */
+class BlocksUsers
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Blocks", inversedBy="blocksUsers")
+     * @ORM\JoinColumn(name="block_id", referencedColumnName="id")
+     */
+    private $blocks;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="blocksUsers")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $users;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="role", type="integer")
+     */
+    private $role;
+}

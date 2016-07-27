@@ -54,6 +54,11 @@ class Blocks
     private $users;
 
     /**
+     * @ORM\OneToMany(targetEntity="BlocksUsers", mappedBy="blocks")
+     */
+    private $blocksUsers;
+
+    /**
      * Get id
      *
      * @return integer
@@ -208,7 +213,7 @@ class Blocks
     /**
      * Get categories
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getCategories()
     {
@@ -231,10 +236,43 @@ class Blocks
     /**
      * Get users
      *
-     * @return \AppBundle\Entity\User 
+     * @return \AppBundle\Entity\User
      */
     public function getUsers()
     {
         return $this->users;
+    }
+
+    /**
+     * Add blocksUsers
+     *
+     * @param \AppBundle\Entity\BlocksUsers $blocksUsers
+     * @return Blocks
+     */
+    public function addBlocksUser(\AppBundle\Entity\BlocksUsers $blocksUsers)
+    {
+        $this->blocksUsers[] = $blocksUsers;
+
+        return $this;
+    }
+
+    /**
+     * Remove blocksUsers
+     *
+     * @param \AppBundle\Entity\BlocksUsers $blocksUsers
+     */
+    public function removeBlocksUser(\AppBundle\Entity\BlocksUsers $blocksUsers)
+    {
+        $this->blocksUsers->removeElement($blocksUsers);
+    }
+
+    /**
+     * Get blocksUsers
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getBlocksUsers()
+    {
+        return $this->blocksUsers;
     }
 }

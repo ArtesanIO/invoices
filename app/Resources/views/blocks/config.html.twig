@@ -5,8 +5,9 @@
     <div class="panel panel-default panel-body ">
         <ul class="list-group ">
             <a href="{{ path('blocks_edit', {'block': block.id })  }}" class="list-group-item">Edit</a>
-            <a href="{{ path('categories', {'block': block.id })  }}" class="list-group-item">Categories</a>
-            <a href="#" class="list-group-item">Users</a>
+            <a href="{{ path('blocks_categories', {'block': block.id })  }}" class="list-group-item">Categories</a>
+            <a href="{{ path('blocks_users', {'block': block.id })  }}" class="list-group-item">Users</a>
+
         </ul>
     </div>
   </div>

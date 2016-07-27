@@ -1,0 +1,11 @@
+{% macro users(users) %}
+     <tr>
+       <td>{{form_widget(users.users)}}</td>
+       <td>{{form_widget(users.role)}}</td>
+       <td>
+           <button type="button" class="btn btn-default collections-delete">
+             <span class="glyphicon glyphicon-trash"></span>
+           </button>
+       </td>
+     </tr>
+ {% endmacro %}

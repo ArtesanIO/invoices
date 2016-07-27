@@ -54,6 +54,11 @@ class Blocks
     private $users;
 
     /**
+     * @ORM\OneToMany(targetEntity="BlocksUsers", mappedBy="blocks")
+     */
+    private $blocksUsers;
+
+    /**
      * Get id
      *
      * @return integer
@@ -208,7 +213,7 @@ class Blocks
     /**
      * Get categories
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getCategories()
     {
@@ -231,7 +236,7 @@ class Blocks
     /**
      * Get users
      *
-     * @return \AppBundle\Entity\User 
+     * @return \AppBundle\Entity\User
      */
     public function getUsers()
     {

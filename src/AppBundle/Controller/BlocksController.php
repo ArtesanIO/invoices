@@ -11,8 +11,6 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * @Route("/blocks")
  */
-
-
 class BlocksController extends Controller
 {
     /**
@@ -52,27 +50,6 @@ class BlocksController extends Controller
 
       return $this->render('blocks/create.html.twig', array(
         'blocks_form' => $blocksForm->createView()
-      ));
-    }
-
-    /**
-     * @Route("/{block}/edit", name="blocks_edit")
-     */
-    public function editAction(Blocks $block, Request $request)
-    {
-      $blocksManager = $this->get('blocks.manager');
-
-      $blocksForm = $this->createForm('blocks', $block)->handleRequest($request);
-
-      if($blocksForm->isValid()){
-        $blocksManager->save($block);
-
-        return $this->redirect($this->generateUrl('blocks'));
-      }
-
-      return $this->render('blocks/edit.html.twig', array(
-        'blocks_form' => $blocksForm->createView(),
-          'block' => $block
       ));
     }
 
