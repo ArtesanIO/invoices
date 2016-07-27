@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
 /**
  * @Route("/friends")
@@ -22,13 +23,15 @@ class FriendsController extends Controller
     public function listAction(Request $request)
     {
 
-      $usersManager = $this->get('users.manager');
+      $friendsManager = $this->get('friends.manager');
 
-      $user = $usersManager->getRepository()->findOneBy(['id' => $this->getUser()]);
+      $friends = $friendsManager->allFriends($this->getUser());
+      
+      $guests = $friendsManager->getRepository()->findBy(array('guests' => $this->getUser(), 'state' => 2));
+      $hosts = $friendsManager->getRepository()->findBy(array('hosts' => $this->getUser(), 'state' => 2));
 
       return $this->render('friends/list.html.twig', array(
-        'users' => $usersManager->getRepository()->findAll(),
-        'user' => $user
+        'friends' => $friends,
       ));
     }
 
@@ -53,14 +56,34 @@ class FriendsController extends Controller
     public function invitationsAction(Request $request)
     {
 
-      $usersManager = $this->get('users.manager');
+      $friendsManager = $this->get('friends.manager');
 
-      $user = $usersManager->getRepository()->findOneBy(['id' => $this->getUser()]);
+      $invitations = $friendsManager->getRepository()->findBy(array('guests' => $this->getUser()->getId(), 'state' => 1));
 
       return $this->render('friends/invitations.html.twig', array(
         //'users' => $usersManager->getRepository()->findAll(),
-        'user' => $user
+        'invitations' => $invitations
       ));
+    }
+
+    /**
+     * @Route("/invitations/accepted", name="friends_invitations_accepted")
+     * @Method({"POST"});
+     */
+    public function invitationsAcceptedAction(Request $request)
+    {
+
+      $friendsManager = $this->get('friends.manager');
+
+      $params = $request->request;
+
+      $friends = $friendsManager->getRepository()->findOneBy(array('id' => $params->get('invitation')));
+
+      $friends->setState($params->get('invitation_action'));
+
+      $friendsManager->save($friends);
+
+      return $this->redirect($this->generateUrl('friends_invitations'));
     }
 
     /**

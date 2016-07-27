@@ -3,12 +3,24 @@
 {% block content_friends %}
 
   <div class="panel-heading">{{ 'sections.friends.titles.your_friends'|trans }}</div>
-  <div class="panel-body">
-    <ul class="list-group">
-      {% for guest in user.guests  %}
-        <li class="list-group-item">{{ guest.id }}</li>
-      {% endfor %}
-    </ul>
-  </div>
 
+  <table class="table table-condensed">
+    <tbody>
+      {% for user in friends  %}
+      <tr>
+        <td>{{ user.user.username }}</td>
+        <td class="text-right">
+          <form class="" action="{{ path('friends_invitations_accepted') }}" method="post">
+            <div class="btn btn-group">
+              <input type="hidden" name="invitation" value="{{ user.id }}">
+              <button type="submit" name="invitation_action" value="3" class="btn btn-danger">Refuse</button>
+            </div>
+
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+
+    </tbody>
+  </table>
 {% endblock %}
