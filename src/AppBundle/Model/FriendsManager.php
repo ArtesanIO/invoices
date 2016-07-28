@@ -30,4 +30,14 @@ class FriendsManager extends ModelManager
     return array_merge($guests, $hosts);
   }
 
+  public function usersBlocks($user)
+  {
+    $allFriends = $this->allFriends($user);
+
+    $users = [];
+
+    return $allFriends;
+
+  }
+
 }

@@ -26,9 +26,6 @@ class FriendsController extends Controller
       $friendsManager = $this->get('friends.manager');
 
       $friends = $friendsManager->allFriends($this->getUser());
-      
-      $guests = $friendsManager->getRepository()->findBy(array('guests' => $this->getUser(), 'state' => 2));
-      $hosts = $friendsManager->getRepository()->findBy(array('hosts' => $this->getUser(), 'state' => 2));
 
       return $this->render('friends/list.html.twig', array(
         'friends' => $friends,

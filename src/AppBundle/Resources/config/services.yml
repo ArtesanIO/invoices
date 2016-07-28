@@ -1,1 +1,5 @@
-
+services:
+  blocks_users.subscriber:
+    class: AppBundle\Form\EventListener\BlocksUsersSubscriber
+    calls:
+      - [setUsers, ["@users.manager"]]

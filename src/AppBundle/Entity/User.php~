@@ -143,4 +143,37 @@ class User extends BaseUser
     {
         return $this->guests;
     }
+
+    /**
+     * Add blocksUsers
+     *
+     * @param \AppBundle\Entity\BlocksUsers $blocksUsers
+     * @return User
+     */
+    public function addBlocksUser(\AppBundle\Entity\BlocksUsers $blocksUsers)
+    {
+        $this->blocksUsers[] = $blocksUsers;
+
+        return $this;
+    }
+
+    /**
+     * Remove blocksUsers
+     *
+     * @param \AppBundle\Entity\BlocksUsers $blocksUsers
+     */
+    public function removeBlocksUser(\AppBundle\Entity\BlocksUsers $blocksUsers)
+    {
+        $this->blocksUsers->removeElement($blocksUsers);
+    }
+
+    /**
+     * Get blocksUsers
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getBlocksUsers()
+    {
+        return $this->blocksUsers;
+    }
 }

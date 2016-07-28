@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Form\EventListener\BlocksUsersSubscriber;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -23,6 +24,8 @@ class BlocksUsersType extends AbstractType
               'choices' => array(1 => 'Own', 2 => 'Editor', 3 => 'Viewer')
             ))
         ;
+
+        $builder->addEventSubscriber(new BlocksUsersSubscriber());
     }
 
     /**
