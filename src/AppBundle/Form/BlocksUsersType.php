@@ -9,6 +9,13 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class BlocksUsersType extends AbstractType
 {
+    private $blockUsers;
+
+    public function __construct($blockUsers)
+    {
+        $this->blockUsers = $blockUsers;
+    }
+
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
@@ -21,11 +28,11 @@ class BlocksUsersType extends AbstractType
               'property' => 'username'
             ))
             ->add('role', 'choice', array(
-              'choices' => array(1 => 'Own', 2 => 'Editor', 3 => 'Viewer')
+              'choices' => array(1 => 'Owner', 2 => 'Editor', 3 => 'Viewer')
             ))
         ;
 
-        $builder->addEventSubscriber(new BlocksUsersSubscriber());
+        $builder->addEventSubscriber(new BlocksUsersSubscriber($this->blockUsers));
     }
 
     /**

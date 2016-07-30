@@ -12,4 +12,54 @@ use Doctrine\ORM\EntityRepository;
  */
 class FriendsRepository extends EntityRepository
 {
+    public function findAllFriends($user)
+    {
+        try {
+            return $this->getEntityManager()->createQuery(
+                'SELECT users, guests, hosts
+                 FROM AppBundle:User users
+                 LEFT JOIN users.guests guests
+                 LEFT JOIN users.hosts hosts
+                 WHERE users = :user
+                '
+            )
+            ->setParameter('user', $user)
+            ->getSingleResult();
+
+        } catch (\Doctrine\ORM\NoResultException $e) {
+            return null;
+        }
+        /*try {
+            return $this->getEntityManager()->createQuery(
+                'SELECT friends, hosts, guests
+                 FROM AppBundle:Friends friends
+                 JOIN friends.hosts hosts
+                 JOIN friends.guests guests
+                 WHERE hosts = :user
+                 OR guests = :user
+                '
+            )
+            ->setParameter('user', $user)
+            ->getResult();
+
+        } catch (\Doctrine\ORM\NoResultException $e) {
+            return null;
+        }*/
+
+        /*try {
+            return $this->getEntityManager()->createQuery(
+                'SELECT users, hosts, guests
+                 FROM AppBundle:User users
+                 JOIN users.hosts hosts
+                 JOIN users.guests guests
+                 WHERE hosts.hosts = :user
+                '
+            )
+                ->setParameter('user', $user)
+                ->getResult();
+
+        } catch (\Doctrine\ORM\NoResultException $e) {
+            return null;
+        }*/
+    }
 }

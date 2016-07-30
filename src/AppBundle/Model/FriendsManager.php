@@ -2,6 +2,8 @@
 
 namespace AppBundle\Model;
 
+use \Doctrine\Common\Collections\ArrayCollection;
+
 class FriendsManager extends ModelManager
 {
 
@@ -30,13 +32,17 @@ class FriendsManager extends ModelManager
     return array_merge($guests, $hosts);
   }
 
-  public function usersBlocks($user)
+  public function blockUsers($user)
   {
     $allFriends = $this->allFriends($user);
 
-    $users = [];
+    $users = new ArrayCollection();
 
-    return $allFriends;
+    foreach($allFriends as $user){
+      $users->add($user);
+    }
+
+    return $users;
 
   }
 

@@ -16,7 +16,7 @@ class BlockUsersType extends AbstractType
     {
         $builder
             ->add('blocksUsers', 'collection', array(
-                'type' => new BlocksUsersType(),
+                'type' => new BlocksUsersType($options['blockUsers']),
                 'by_reference' => false,
                 'allow_delete' => true,
                 'allow_add' => true
@@ -33,6 +33,12 @@ class BlockUsersType extends AbstractType
             'data_class' => 'AppBundle\Entity\Blocks',
             'translation_domain' => 'messages'
         ));
+
+        $resolver->setRequired(['blockUsers']);
+
+        $resolver->setAllowedTypes([
+            'blockUsers' => 'object'
+        ]);
     }
 
     /**

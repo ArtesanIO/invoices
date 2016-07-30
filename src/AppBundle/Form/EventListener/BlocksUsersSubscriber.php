@@ -2,20 +2,20 @@
 
 namespace AppBundle\Form\EventListener;
 
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 
-class BlocksUsersSubscriber implements EventSubscriberInterface, ContainerAwareInterface
+class BlocksUsersSubscriber implements EventSubscriberInterface
 {
-    protected $container;
+    private $blockUsers;
 
-    public function setContainer(ContainerInterface $container = NULL)
+    public function __construct($blockUsers)
     {
-        $this->container = $container;
+        $this->blockUsers = $blockUsers;
     }
 
     public static function getSubscribedEvents()
@@ -30,13 +30,17 @@ class BlocksUsersSubscriber implements EventSubscriberInterface, ContainerAwareI
         $data = $event->getData();
 
         $form = $event->getForm();
-        
-        echo '<pre>';print_r($this->container);exit();
-        
+
         $form
             ->add('users','entity', array(
                 'class' => 'AppBundle:User',
-                'property' => 'username'
+                'query_builder' => $this->blockUsers
+                /*'query_builder' => function(EntityRepository $er)
+                {
+                    return $er->createQueryBuilder('users')
+                        ->where('users.id IN (:users)')
+                        ->setParameter('users', array(2,3,4));
+                }*/
             ));
 
     }

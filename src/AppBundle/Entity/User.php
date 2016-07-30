@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  * @ORM\Table(name="fos_user")
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\UsersRepository")
  */
 class User extends BaseUser
 {
@@ -33,6 +34,11 @@ class User extends BaseUser
      * @ORM\OneToMany(targetEntity="Friends", mappedBy="hosts", cascade={"persist"})
      */
     private $guests;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Friends", mappedBy="hosts")
+     */
+    private $friends;
 
     /**
      * @ORM\OneToMany(targetEntity="BlocksUsers", mappedBy="users")
@@ -170,10 +176,43 @@ class User extends BaseUser
     /**
      * Get blocksUsers
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getBlocksUsers()
     {
         return $this->blocksUsers;
+    }
+
+    /**
+     * Add friends
+     *
+     * @param \AppBundle\Entity\Friends $friends
+     * @return User
+     */
+    public function addFriend(\AppBundle\Entity\Friends $friends)
+    {
+        $this->friends[] = $friends;
+
+        return $this;
+    }
+
+    /**
+     * Remove friends
+     *
+     * @param \AppBundle\Entity\Friends $friends
+     */
+    public function removeFriend(\AppBundle\Entity\Friends $friends)
+    {
+        $this->friends->removeElement($friends);
+    }
+
+    /**
+     * Get friends
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFriends()
+    {
+        return $this->friends;
     }
 }

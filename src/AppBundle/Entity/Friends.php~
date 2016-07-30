@@ -73,7 +73,7 @@ class Friends
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -96,7 +96,7 @@ class Friends
     /**
      * Get state
      *
-     * @return integer 
+     * @return integer
      */
     public function getState()
     {
@@ -119,7 +119,7 @@ class Friends
     /**
      * Get hosts
      *
-     * @return \AppBundle\Entity\User 
+     * @return \AppBundle\Entity\User
      */
     public function getHosts()
     {
@@ -142,7 +142,7 @@ class Friends
     /**
      * Get guests
      *
-     * @return \AppBundle\Entity\User 
+     * @return \AppBundle\Entity\User
      */
     public function getGuests()
     {
@@ -175,7 +175,7 @@ class Friends
     /**
      * Get sent
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getSent()
     {
@@ -208,7 +208,7 @@ class Friends
     /**
      * Get accepted
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getAccepted()
     {
@@ -241,7 +241,7 @@ class Friends
     /**
      * Get rejected
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getRejected()
     {
@@ -274,7 +274,7 @@ class Friends
     /**
      * Get removed
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getRemoved()
     {

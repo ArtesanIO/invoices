@@ -69,7 +69,11 @@ class BlocksConfigController extends Controller
 
     $usersOriginal = $blocksManager->collectionsAdd($block->getUsers());
 
-    $blocksForm = $this->createForm('block_users', $block)->handleRequest($request);
+    $usersManager = $this->get('users.manager');
+
+    $blockUsers = $usersManager->getBlockUsers($this->getUser());
+
+    $blocksForm = $this->createForm('block_users', $block, ['blockUsers' => $blockUsers])->handleRequest($request);
 
     if($blocksForm->isValid()){
 

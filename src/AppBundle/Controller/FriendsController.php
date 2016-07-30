@@ -22,10 +22,9 @@ class FriendsController extends Controller
      */
     public function listAction(Request $request)
     {
+      $usersManager = $this->get('users.manager');
 
-      $friendsManager = $this->get('friends.manager');
-
-      $friends = $friendsManager->allFriends($this->getUser());
+      $friends = $usersManager->getFriends($this->getUser());
 
       return $this->render('friends/list.html.twig', array(
         'friends' => $friends,
