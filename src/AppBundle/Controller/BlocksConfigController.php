@@ -67,17 +67,17 @@ class BlocksConfigController extends Controller
   {
     $blocksManager = $this->get('blocks.manager');
 
-    $usersOriginal = $blocksManager->collectionsAdd($block->getUsers());
-
     $usersManager = $this->get('users.manager');
 
     $blockUsers = $usersManager->getBlockUsers($this->getUser());
+
+    $usersOriginal = $blocksManager->collectionsAdd($block->getBlocksUsers());
 
     $blocksForm = $this->createForm('block_users', $block, ['blockUsers' => $blockUsers])->handleRequest($request);
 
     if($blocksForm->isValid()){
 
-      $blocksManager->collectionsSave($block->getUsers(), $usersOriginal);
+      $blocksManager->collectionsSave($block->getBlocksUsers(), $usersOriginal);
 
       $blocksManager->save($block);
 
