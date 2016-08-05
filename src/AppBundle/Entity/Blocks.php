@@ -59,6 +59,13 @@ class Blocks
     private $blocksUsers;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="sluger", type="string", length=255)
+     */
+    private $sluger;
+
+    /**
      * Get id
      *
      * @return integer
@@ -273,5 +280,28 @@ class Blocks
     public function getBlocksUsers()
     {
         return $this->blocksUsers;
+    }
+
+    /**
+     * Set sluger
+     *
+     * @param string $sluger
+     * @return Blocks
+     */
+    public function setSluger($sluger)
+    {
+        $this->sluger = $sluger;
+
+        return $this;
+    }
+
+    /**
+     * Get sluger
+     *
+     * @return string 
+     */
+    public function getSluger()
+    {
+        return $this->sluger;
     }
 }

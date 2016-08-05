@@ -19,7 +19,7 @@
           <td>{{ block.currencys.currency }}</td>
           <td>{{ block.recordsTotal }}</td>
           <td class="text-right">
-            {{ buttons.action('actions.edit'|trans, { 'path': 'records', 'args': { 'block': block.id } }) }}
+            {{ buttons.action('actions.edit'|trans, { 'path': 'records', 'args': { 'block': block.sluger } }) }}
           </td>
         </tr>
         {% endfor %}

@@ -24,7 +24,9 @@
         "friendsofsymfony/jsrouting-bundle": "~1.5",
         "knplabs/knp-menu-bundle": "^2.0",
         "stof/doctrine-extensions-bundle": "^1.2",
-        "friendsofsymfony/user-bundle": "~2.0@dev"
+        "friendsofsymfony/user-bundle": "~2.0@dev",
+        "cocur/slugify": "^2.2",
+        "javiereguiluz/easyslugger": "^1.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

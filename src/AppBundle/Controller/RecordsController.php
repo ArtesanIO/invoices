@@ -20,8 +20,13 @@ class RecordsController extends Controller
     /**
      * @Route("/{block}/records", name="records")
      */
-    public function listAction(Blocks $block, Request $request)
+    public function listAction($block, Request $request)
     {
+
+      $blocksManager = $this->get("blocks.manager");
+
+      $block = $blocksManager->getRepository()->findOneBy(array('sluger' => $block));
+
       $recordsManager = $this->get('records.manager');
 
       $records = $recordsManager->create();

@@ -59,6 +59,13 @@ class Blocks
     private $blocksUsers;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="sluger", type="string", length=255)
+     */
+    private $sluger;
+
+    /**
      * Get id
      *
      * @return integer

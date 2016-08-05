@@ -3,3 +3,6 @@ services:
     class: AppBundle\Form\EventListener\BlocksUsersSubscriber
     arguments:
       - @users.manager
+
+  slugyrand:
+    class: AppBundle\Utils\SlugyRand
