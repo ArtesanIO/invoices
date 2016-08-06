@@ -61,9 +61,9 @@ class Blocks
     /**
      * @var string
      *
-     * @ORM\Column(name="sluger", type="string", length=255)
+     * @ORM\Column(name="slug", type="string", length=255, unique=true)
      */
-    private $sluger;
+    private $slug;
 
     /**
      * Get id
@@ -283,25 +283,25 @@ class Blocks
     }
 
     /**
-     * Set sluger
+     * Set slug
      *
-     * @param string $sluger
+     * @param string $slug
      * @return Blocks
      */
-    public function setSluger($sluger)
+    public function setSlug($slug)
     {
-        $this->sluger = $sluger;
+        $this->slug = $slug;
 
         return $this;
     }
 
     /**
-     * Get sluger
+     * Get slug
      *
      * @return string 
      */
-    public function getSluger()
+    public function getSlug()
     {
-        return $this->sluger;
+        return $this->slug;
     }
 }

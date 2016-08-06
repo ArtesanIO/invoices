@@ -4,5 +4,5 @@ services:
     arguments:
       - @users.manager
 
-  slugyrand:
-    class: AppBundle\Utils\SlugyRand
+  slug:
+    class: AppBundle\Utils\Slug

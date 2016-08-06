@@ -2,7 +2,7 @@
 
 namespace AppBundle\Utils;
 
-class SlugyRand
+class Slug
 {
 
   public function slug($start = 5, $end = 15)

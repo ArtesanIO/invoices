@@ -41,10 +41,10 @@ class BlocksController extends Controller
 
       if($blocksForm->isValid()){
 
-        $slugyRand = $this->get("slugyrand");
+        $slug = $this->get("slug");
 
         $blocks->setUsers($this->getUser());
-        $blocks->setSluger($slugyRand->slug());
+        $blocks->setSlug($slug->slug());
         $blocksManager->save($blocks);
 
         return $this->redirect($this->generateUrl('blocks'));

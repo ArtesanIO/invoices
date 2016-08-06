@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Blocks
@@ -59,11 +60,10 @@ class Blocks
     private $blocksUsers;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="sluger", type="string", length=255)
+     * @Gedmo\Slug(fields={"title", "code"})
+     * @ORM\Column(length=15, unique=true)
      */
-    private $sluger;
+    private $slug;
 
     /**
      * Get id
@@ -280,5 +280,28 @@ class Blocks
     public function getBlocksUsers()
     {
         return $this->blocksUsers;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     * @return Blocks
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string 
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 }

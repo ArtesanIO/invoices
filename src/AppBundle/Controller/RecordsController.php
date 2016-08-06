@@ -25,7 +25,7 @@ class RecordsController extends Controller
 
       $blocksManager = $this->get("blocks.manager");
 
-      $block = $blocksManager->getRepository()->findOneBy(array('sluger' => $block));
+      $block = $blocksManager->getRepository()->findOneBySlug($block);
 
       $recordsManager = $this->get('records.manager');
 
