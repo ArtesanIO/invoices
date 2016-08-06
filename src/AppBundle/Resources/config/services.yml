@@ -6,3 +6,11 @@ services:
 
   slug:
     class: AppBundle\Utils\Slug
+
+  login_success_handler:
+     class: AppBundle\EventListener\LoginSuccessHandler
+     arguments: [@router, @security.token_storage, @security.authorization_checker]
+
+  logout_success_handler:
+          class: AppBundle\EventListener\LogoutSuccessHandler
+          arguments: [@router]
