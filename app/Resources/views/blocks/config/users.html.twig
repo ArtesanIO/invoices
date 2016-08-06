@@ -6,7 +6,7 @@
 
     <form action="" method="post" class="col-lg-4">
         {{ form_widget(block_users_form._token) }}
-
+        <div class="table-responsive">
         <table class="table table-condensed">
           <thead>
               <tr>
@@ -20,7 +20,8 @@
                   {{ form.users(users) }}
               {% endfor %}
           </tbody>
-          </table>
+        </table>
+        </div>
       <div class="btn btn-group">
           {{ buttons.submit() }}
           {{ buttons.button('Add', '', 'btn btn-default collections-add','plus') }}
