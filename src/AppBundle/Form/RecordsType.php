@@ -25,7 +25,10 @@ class RecordsType extends AbstractType
             ->add('categories')
             ->add('concepts', 'entity', array(
                 'class' => 'AppBundle\Entity\Concepts',
-                'property' => 'concept'
+                'property' => 'concept',
+                'attr' => [
+                    'disabled' => true
+                ]
             ))
             ->add('value', 'number', array(
               'label' => 'sections.records.titles.value',

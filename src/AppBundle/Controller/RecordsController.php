@@ -33,7 +33,7 @@ class RecordsController extends Controller
 
       $recordsForm = $this->createForm('records', $records, ['block' => $block])->handleRequest($request);
 
-      if($recordsForm->isValid()){
+      if($recordsForm->isValid() && $recordsForm->isSubmitted()){
         $records->setBlocks($block);
         $recordsManager->save($records);
         return $this->redirect($this->generateUrl('records', array('block' => $block->getId())));
