@@ -46,7 +46,7 @@ class Categories
     private $typesRecord;
 
     /**
-     * @ORM\OneToMany(targetEntity="Records", mappedBy="categories")
+     * @ORM\OneToMany(targetEntity="Concepts", mappedBy="categories", cascade={"persist"})
      */
     private $concepts;
 
@@ -63,7 +63,7 @@ class Categories
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -86,7 +86,7 @@ class Categories
     /**
      * Get category
      *
-     * @return string
+     * @return string 
      */
     public function getCategory()
     {
@@ -119,7 +119,7 @@ class Categories
     /**
      * Get records
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getRecords()
     {
@@ -142,7 +142,7 @@ class Categories
     /**
      * Get blocks
      *
-     * @return \AppBundle\Entity\Blocks
+     * @return \AppBundle\Entity\Blocks 
      */
     public function getBlocks()
     {
@@ -175,22 +175,21 @@ class Categories
     /**
      * Add concepts
      *
-     * @param \AppBundle\Entity\Records $concepts
+     * @param \AppBundle\Entity\Concepts $concepts
      * @return Categories
      */
-    public function addConcept(\AppBundle\Entity\Records $concepts)
+    public function addConcept(\AppBundle\Entity\Concepts $concepts)
     {
-        $this->concepts[] = $concepts;
-
-        return $this;
+        $concepts->setCategories($this);
+        $this->concepts->add($concepts);
     }
 
     /**
      * Remove concepts
      *
-     * @param \AppBundle\Entity\Records $concepts
+     * @param \AppBundle\Entity\Concepts $concepts
      */
-    public function removeConcept(\AppBundle\Entity\Records $concepts)
+    public function removeConcept(\AppBundle\Entity\Concepts $concepts)
     {
         $this->concepts->removeElement($concepts);
     }

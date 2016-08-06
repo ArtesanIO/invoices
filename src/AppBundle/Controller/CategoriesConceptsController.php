@@ -20,22 +20,25 @@ class CategoriesConceptsController extends Controller
      */
     public function listAction(Blocks $block, Categories $category, Request $request)
     {
-      $blocksManager = $this->get('blocks.manager');
-
-      $categoriesOriginal = $blocksManager->collectionsAdd($block->getCategories());
-
-      $blockCategoriesForm = $this->createForm('blocks_categories', $block)->handleRequest($request);
-
-        if($blockCategoriesForm->isValid()){
-
-            $blocksManager->collectionsSave($block->getCategories(), $categoriesOriginal);
-
-            $blocksManager->save($block);
-
-            return $this->redirect($this->generateUrl('categories', array("block" => $block->getId())));
-        }
 
       $categoriesManager = $this->get('categories.manager');
+
+      $conceptsOriginal = $categoriesManager->collectionsAdd($category->getConcepts());
+
+      $blockCategoriesForm = $this->createForm('blocks_categories', $block);
+
+      $categoriesConceptsForm = $this->createForm('categories_concepts', $category)->handleRequest($request);
+
+      if($categoriesConceptsForm->isValid()){
+
+          $categoriesManager->collectionsSave($category->getConcepts(), $conceptsOriginal);
+
+          $categoriesManager->save($category);
+
+          return $this->redirect($this->generateUrl('categories_concepts', ["block" => $block->getId(), "category" => $block->getId()]));
+
+      }
+
 
       $categoriesConceptsForm = $this->createForm('categories_concepts', $category)->handleRequest($request);
 

@@ -29,23 +29,10 @@ class Concepts
     private $concept;
 
     /**
-     * @ORM\OneToMany(targetEntity="Records", mappedBy="categories")
-     */
-    private $records;
-
-    /**
      * @ORM\ManyToOne(targetEntity="Categories", inversedBy="concepts")
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      */
     private $categories;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->records = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
     /**
      * Get id
@@ -78,39 +65,6 @@ class Concepts
     public function getConcept()
     {
         return $this->concept;
-    }
-
-    /**
-     * Add records
-     *
-     * @param \AppBundle\Entity\Records $records
-     * @return Concepts
-     */
-    public function addRecord(\AppBundle\Entity\Records $records)
-    {
-        $this->records[] = $records;
-
-        return $this;
-    }
-
-    /**
-     * Remove records
-     *
-     * @param \AppBundle\Entity\Records $records
-     */
-    public function removeRecord(\AppBundle\Entity\Records $records)
-    {
-        $this->records->removeElement($records);
-    }
-
-    /**
-     * Get records
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getRecords()
-    {
-        return $this->records;
     }
 
     /**
