@@ -21,10 +21,8 @@ class BlocksController extends Controller
 
       $blocksManager = $this->get('blocks.manager');
 
-      $blocks = $blocksManager->getRepository()->findBy(["users" => $this->getUser()]);
-
       return $this->render('blocks/list.html.twig', array(
-        'blocks' => $blocks
+        'blocks' => $blocksManager->ownBlocks()
       ));
     }
 

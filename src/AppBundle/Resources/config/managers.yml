@@ -5,6 +5,15 @@ services:
       - AppBundle:Blocks
     calls:
       - [setContainer, ["@service_container"]]
+      - [securityContext, ["@security.token_storage"]]
+      - [setBlocksUsers, ["@blocks_users.manager"]]
+
+  blocks_users.manager:
+      class: AppBundle\Model\BlocksUsersManager
+      arguments:
+        - AppBundle:BlocksUsers
+      calls:
+        - [setContainer, ["@service_container"]]
 
   records.manager:
     class: AppBundle\Model\RecordsManager

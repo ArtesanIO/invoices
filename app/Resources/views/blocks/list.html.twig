@@ -6,20 +6,18 @@
     <table class="table table-condensed">
       <thead>
         <tr>
-          <th>#</th>
           <th>{{ 'sections.blocks.titles.block'|trans }}</th>
-          <th>{{ 'sections.blocks.titles.currencys'|trans }}</th>
+          <th>{{ 'sections.blocks.titles.own'|trans }}</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
         {% for block in blocks %}
         <tr>
-          <td>{{ block.id }}</td>
           <td>{{ block.block }}</td>
-          <td>{{ block.currencys.currency }}</td>
-          <td>{{ block.recordsTotal }}</td>
+          <td>{{ block.own }}</td>
           <td class="text-right">
-            {{ buttons.action('actions.edit'|trans, { 'path': 'records', 'args': { 'block': block.slug } }) }}
+            {{ buttons.action('actions.edit'|trans, { 'path': 'records', 'args': { 'block': block.id } }) }}
           </td>
         </tr>
         {% endfor %}

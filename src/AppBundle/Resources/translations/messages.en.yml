@@ -15,6 +15,7 @@ sections:
     titles:
       block: Block
       currencys: Currencys
+      own: Owner
   records:
     title: Records
     titles:
