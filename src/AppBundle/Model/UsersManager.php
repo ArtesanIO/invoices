@@ -26,7 +26,7 @@ class UsersManager extends ModelManager
             $hosts[$host->getId()]['user'] = $host->getHosts();
           }
         }
-
+        
         return array_merge($guests, $hosts);
     }
 
@@ -39,7 +39,7 @@ class UsersManager extends ModelManager
         foreach ($friends as $f => $friend) {
             $ids[$friend['user']->getId()] = $friend['user']->getId();
         }
-
+        
         return $ids;
     }
 

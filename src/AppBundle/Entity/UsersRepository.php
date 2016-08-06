@@ -37,7 +37,7 @@ class UsersRepository extends EntityRepository
             ->getRepository('AppBundle:User')
             ->createQueryBuilder('users')
             ->where('users.id IN (:users)')
-            ->setParameter('users', array(2,3,4));
+            ->setParameter('users', $users);
 
     }
 }

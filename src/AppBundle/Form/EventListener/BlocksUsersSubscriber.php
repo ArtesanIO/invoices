@@ -35,12 +35,6 @@ class BlocksUsersSubscriber implements EventSubscriberInterface
             ->add('users','entity', array(
                 'class' => 'AppBundle:User',
                 'query_builder' => $this->blockUsers
-                /*'query_builder' => function(EntityRepository $er)
-                {
-                    return $er->createQueryBuilder('users')
-                        ->where('users.id IN (:users)')
-                        ->setParameter('users', array(2,3,4));
-                }*/
             ));
 
     }
