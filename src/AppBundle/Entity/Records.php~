@@ -63,6 +63,13 @@ class Records
      */
     private $concepts;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="slug", type="string", length=255, unique=true)
+     */
+    private $slug;
+
     public function __construct()
     {
         $this->recordDate = new \Datetime("now");
@@ -195,5 +202,28 @@ class Records
     public function getRecordDate()
     {
         return $this->recordDate;
+    }
+
+    /**
+     * Set concepts
+     *
+     * @param \AppBundle\Entity\Concepts $concepts
+     * @return Records
+     */
+    public function setConcepts(\AppBundle\Entity\Concepts $concepts = null)
+    {
+        $this->concepts = $concepts;
+
+        return $this;
+    }
+
+    /**
+     * Get concepts
+     *
+     * @return \AppBundle\Entity\Concepts 
+     */
+    public function getConcepts()
+    {
+        return $this->concepts;
     }
 }

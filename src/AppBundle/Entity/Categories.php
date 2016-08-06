@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Utils\Slug;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -9,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table()
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks()
  */
 class Categories
 {
@@ -49,6 +51,13 @@ class Categories
      * @ORM\OneToMany(targetEntity="Concepts", mappedBy="categories", cascade={"persist"})
      */
     private $concepts;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="slug", type="string", length=255, unique=true)
+     */
+    private $slug;
 
 
     /**
@@ -202,5 +211,27 @@ class Categories
     public function getConcepts()
     {
         return $this->concepts;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setSlug()
+    {
+        $slug = new Slug();
+
+        $this->slug = $slug->slug();
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string 
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 }

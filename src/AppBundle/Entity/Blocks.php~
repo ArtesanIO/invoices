@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Utils\Slug;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 
@@ -10,6 +11,7 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="AppBundle\Entity\BlocksRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Blocks
 {
@@ -283,14 +285,13 @@ class Blocks
     }
 
     /**
-     * Set slug
-     *
-     * @param string $slug
-     * @return Blocks
+     * @ORM\PrePersist
      */
-    public function setSlug($slug)
+    public function setSlug()
     {
-        $this->slug = $slug;
+        $slug = new Slug();
+
+        $this->slug = $slug->slug();
 
         return $this;
     }

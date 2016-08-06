@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Utils\Slug;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -10,6 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table()
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks()
  */
 class Records
 {
@@ -62,6 +64,13 @@ class Records
      * @ORM\JoinColumn(name="concept_id", referencedColumnName="id")
      */
     private $concepts;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="slug", type="string", length=255, unique=true)
+     */
+    private $slug;
 
     public function __construct()
     {
@@ -218,5 +227,27 @@ class Records
     public function getConcepts()
     {
         return $this->concepts;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setSlug()
+    {
+        $slug = new Slug();
+
+        $this->slug = $slug->slug();
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string 
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 }

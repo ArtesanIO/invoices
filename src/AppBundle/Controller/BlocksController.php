@@ -41,10 +41,8 @@ class BlocksController extends Controller
 
       if($blocksForm->isValid()){
 
-        $slug = $this->get("slug");
-
         $blocks->setUsers($this->getUser());
-        $blocks->setSlug($slug->slug());
+
         $blocksManager->save($blocks);
 
         return $this->redirect($this->generateUrl('blocks'));
