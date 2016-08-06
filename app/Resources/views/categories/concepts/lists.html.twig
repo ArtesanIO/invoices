@@ -1,0 +1,33 @@
+{% extends "blocks/config/categories.html.twig" %}
+
+{% block categories_content %}
+
+    {% import 'AppBundle::Components/buttons.html.twig' as buttons %}
+
+    {% import 'blocks/config/lists/concepts.html.twig' as form %}
+
+    <form action="" method="post" class="col-lg-6">
+        {{ form_widget(categories_concepts_form._token) }}
+
+        <table class="table table-condensed">
+            <thead>
+            <tr>
+                <th>Concepts to {{ category.category }}</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody class="collections" data-prototype="{{ form.concepts(categories_concepts_form.concepts.vars.prototype)|e }}">
+            {% for concepts in categories_concepts_form.concepts %}
+                {{ form.concepts(concepts) }}
+            {% endfor %}
+            </tbody>
+        </table>
+
+
+        <div class="btn btn-group">
+            {{ buttons.submit() }}
+            {{ buttons.button('Add', '', 'btn btn-default collections-add','plus') }}
+        </div>
+    </form>
+
+{% endblock %}

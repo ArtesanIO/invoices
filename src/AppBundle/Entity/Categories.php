@@ -44,12 +44,20 @@ class Categories
      * @ORM\JoinColumn(name="type_record_id", referencedColumnName="id")
      */
     private $typesRecord;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Records", mappedBy="categories")
+     */
+    private $concepts;
+
+
     /**
      * Constructor
      */
     public function __construct()
     {
         $this->records = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->concepts = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -162,5 +170,38 @@ class Categories
     public function getTypesRecord()
     {
         return $this->typesRecord;
+    }
+
+    /**
+     * Add concepts
+     *
+     * @param \AppBundle\Entity\Records $concepts
+     * @return Categories
+     */
+    public function addConcept(\AppBundle\Entity\Records $concepts)
+    {
+        $this->concepts[] = $concepts;
+
+        return $this;
+    }
+
+    /**
+     * Remove concepts
+     *
+     * @param \AppBundle\Entity\Records $concepts
+     */
+    public function removeConcept(\AppBundle\Entity\Records $concepts)
+    {
+        $this->concepts->removeElement($concepts);
+    }
+
+    /**
+     * Get concepts
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getConcepts()
+    {
+        return $this->concepts;
     }
 }

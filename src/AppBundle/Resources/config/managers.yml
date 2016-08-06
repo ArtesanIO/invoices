@@ -26,3 +26,10 @@ services:
         - AppBundle:Friends
       calls:
         - [setContainer, ["@service_container"]]
+
+  categories.manager:
+        class: AppBundle\Model\CategoriesManager
+        arguments:
+          - AppBundle:Categories
+        calls:
+          - [setContainer, ["@service_container"]]

@@ -44,12 +44,20 @@ class Categories
      * @ORM\JoinColumn(name="type_record_id", referencedColumnName="id")
      */
     private $typesRecord;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Records", mappedBy="categories")
+     */
+    private $concepts;
+
+
     /**
      * Constructor
      */
     public function __construct()
     {
         $this->records = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->concepts = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**

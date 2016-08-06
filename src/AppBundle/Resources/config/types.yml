@@ -9,6 +9,11 @@ services:
         tags:
             - { name: form.type, alias: blocks_categories }
 
+    categories_concepts.type:
+            class: AppBundle\Form\CategoriesConceptsType
+            tags:
+                - { name: form.type, alias: categories_concepts }
+
     blocks_users.type:
         class: AppBundle\Form\BlockUsersType
         tags:

@@ -3,9 +3,18 @@
        <td>{{form_widget(categories.category)}}</td>
        <td>{{form_widget(categories.typesRecord)}}</td>
        <td>
-           <button type="button" class="btn btn-default collections-delete">
-             <span class="glyphicon glyphicon-trash"></span>
-           </button>
+           <div class="btn btn-group">
+               <button type="button" class="btn btn-default collections-delete">
+                   <span class="glyphicon glyphicon-trash"></span>
+               </button>
+               {% if categories.vars.value.id is defined and categories.vars.value.blocks.id %}
+                   <a href="{{ path('categories_concepts', { block: categories.vars.value.blocks.id, category: categories.vars.value.id }) }}" class="btn btn-default">
+                       <span class="glyphicon glyphicon-edit"></span>
+                   </a>
+               {% endif %}
+
+           </div>
+
        </td>
      </tr>
  {% endmacro %}

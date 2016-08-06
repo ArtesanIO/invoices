@@ -6,7 +6,7 @@
 
     {% import 'blocks/config/lists/categories.html.twig' as form %}
 
-      <form action="" method="post" class="col-lg-4">
+      <form action="" method="post" class="col-lg-6">
           {{ form_widget(blocks_categories_form._token) }}
 
           <table class="table table-condensed">
@@ -30,4 +30,5 @@
             {{ buttons.button('Add', '', 'btn btn-default collections-add','plus') }}
         </div>
       </form>
+      {% block categories_content %}{% endblock %}
 {% endblock %}
