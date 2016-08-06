@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Blocks;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,6 +16,7 @@ class BlocksConfigController extends Controller
 {
   /**
    * @Route("/{block}/edit", name="blocks_edit")
+   * @ParamConverter("block", options={"mapping": {"block": "slug"}})
    */
    public function editAction(Blocks $block, Request $request)
    {
@@ -25,7 +27,7 @@ class BlocksConfigController extends Controller
      if($blocksForm->isValid()){
        $blocksManager->save($block);
 
-       return $this->redirect($this->generateUrl('blocks'));
+       return $this->redirect($this->generateUrl('blocks_edit', ["block" => $block->getSlug()]));
      }
 
      return $this->render('blocks/config/edit.html.twig', array(
@@ -36,6 +38,7 @@ class BlocksConfigController extends Controller
 
     /**
      * @Route("/{block}/categories", name="blocks_categories")
+     * @ParamConverter("block", options={"mapping": {"block": "slug"}})
      */
     public function categoriesAction(Blocks $block, Request $request)
     {
@@ -51,7 +54,7 @@ class BlocksConfigController extends Controller
 
             $blocksManager->save($block);
 
-            return $this->redirect($this->generateUrl('blocks_categories', array("block" => $block->getId())));
+            return $this->redirect($this->generateUrl('blocks_categories', array("block" => $block->getSlug())));
         }
 
       return $this->render('blocks/config/categories.html.twig', array(
@@ -62,6 +65,7 @@ class BlocksConfigController extends Controller
 
   /**
    * @Route("/{block}/users", name="blocks_users")
+   * @ParamConverter("block", options={"mapping": {"block": "slug"}})
    */
   public function usersAction(Blocks $block, Request $request)
   {
@@ -81,7 +85,7 @@ class BlocksConfigController extends Controller
 
       $blocksManager->save($block);
 
-      return $this->redirect($this->generateUrl('blocks_users', array("block" => $block->getId())));
+      return $this->redirect($this->generateUrl('blocks_users', array("block" => $block->getSlug())));
     }
 
     return $this->render('blocks/config/users.html.twig', array(
