@@ -57,9 +57,15 @@ class Records
      */
     private $categories;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Concepts", inversedBy="records")
+     * @ORM\JoinColumn(name="concept_id", referencedColumnName="id")
+     */
+    private $concepts;
+
     public function __construct()
     {
-            $this->recordDate = new \Datetime("now");
+        $this->recordDate = new \Datetime("now");
     }
 
     /**
@@ -189,5 +195,28 @@ class Records
     public function getRecordDate()
     {
         return $this->recordDate;
+    }
+
+    /**
+     * Set concepts
+     *
+     * @param \AppBundle\Entity\Concepts $concepts
+     * @return Records
+     */
+    public function setConcepts(\AppBundle\Entity\Concepts $concepts = null)
+    {
+        $this->concepts = $concepts;
+
+        return $this;
+    }
+
+    /**
+     * Get concepts
+     *
+     * @return \AppBundle\Entity\Concepts 
+     */
+    public function getConcepts()
+    {
+        return $this->concepts;
     }
 }

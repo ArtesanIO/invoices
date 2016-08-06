@@ -23,6 +23,10 @@ class RecordsType extends AbstractType
                 'widget' => 'single_text',
             ))
             ->add('categories')
+            ->add('concepts', 'entity', array(
+                'class' => 'AppBundle\Entity\Concepts',
+                'property' => 'concept'
+            ))
             ->add('value', 'number', array(
               'label' => 'sections.records.titles.value',
             ))

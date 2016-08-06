@@ -57,9 +57,15 @@ class Records
      */
     private $categories;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Concepts", inversedBy="records")
+     * @ORM\JoinColumn(name="concept_id", referencedColumnName="id")
+     */
+    private $concepts;
+
     public function __construct()
     {
-            $this->recordDate = new \Datetime("now");
+        $this->recordDate = new \Datetime("now");
     }
 
     /**
