@@ -8,7 +8,7 @@
                    <span class="glyphicon glyphicon-trash"></span>
                </button>
                {% if categories.vars.value.id is defined and categories.vars.value.blocks.id %}
-                   <a href="{{ path('categories_concepts', { block: categories.vars.value.blocks.id, category: categories.vars.value.id }) }}" class="btn btn-default">
+                   <a href="{{ path('categories_concepts', { block: categories.vars.value.blocks.slug, category: categories.vars.value.slug }) }}" class="btn btn-default">
                        <span class="glyphicon glyphicon-edit"></span>
                    </a>
                {% endif %}

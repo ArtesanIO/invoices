@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Blocks;
 use AppBundle\Entity\Categories;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,6 +18,8 @@ class CategoriesConceptsController extends Controller
 {
     /**
      * @Route("/{block}/categories/{category}", name="categories_concepts")
+     * @ParamConverter("block", options={"mapping": {"block": "slug"}})
+     * @ParamConverter("category", options={"mapping": {"category": "slug"}})
      */
     public function listAction(Blocks $block, Categories $category, Request $request)
     {

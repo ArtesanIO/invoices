@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Blocks;
 use AppBundle\Entity\Records;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,6 +20,7 @@ class RecordsController extends Controller
 {
     /**
      * @Route("/{block}/records", name="records")
+     * @ParamConverter("block", options={"mapping": {"block": "slug"}})
      */
     public function listAction($block, Request $request)
     {
@@ -36,7 +38,7 @@ class RecordsController extends Controller
       if($recordsForm->isValid() && $recordsForm->isSubmitted()){
         $records->setBlocks($block);
         $recordsManager->save($records);
-        return $this->redirect($this->generateUrl('records', array('block' => $block->getId())));
+        return $this->redirect($this->generateUrl('records', array('block' => $block->getSlug())));
       }
 
       $records = $recordsManager->getRepository()->findBy(array('blocks'=> $block));
@@ -49,7 +51,9 @@ class RecordsController extends Controller
     }
 
     /**
-     * @Route("/{block}/records{record}", name="records_edit")
+     * @Route("/{block}/records/{record}", name="records_edit")
+     * @ParamConverter("block", options={"mapping": {"block": "slug"}})
+     * @ParamConverter("record", options={"mapping": {"record": "slug"}})
      */
     public function editAction(Blocks $block, Records $record, Request $request)
     {
@@ -57,12 +61,14 @@ class RecordsController extends Controller
 
       $records = $recordsManager->getRepository()->findOneBy(array('id' => $record->getid(), 'blocks' => $block));
 
-      $recordsForm = $this->createForm('records', $records)->handleRequest($request);
+      $recordsForm = $this->createForm('records', $records, ['block' => $block])->handleRequest($request);
 
       if($recordsForm->isValid()){
+
         $records->setBlocks($block);
         $recordsManager->save($records);
-        return $this->redirect($this->generateUrl('records_edit', array('block' => $block->getId(), 'record' => $record->getId())));
+
+        return $this->redirect($this->generateUrl('records_edit', array('block' => $block->getSlug(), 'record' => $record->getSlug())));
       }
 
       $records = $recordsManager->getRepository()->findOneBy(array('blocks'=> $block));

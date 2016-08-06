@@ -32,7 +32,7 @@
             <td class="text-right">{{ record.recordDate|date('d-m-Y') }}</td>
             <td class="text-right">{{ record.value }}</td>
             <td class="text-right">
-              {{ buttons.action('actions.edit'|trans, { 'path': 'records_edit', 'args': { 'block': block.id, 'record': record.id } }) }}
+              {{ buttons.action('actions.edit'|trans, { 'path': 'records_edit', 'args': { 'block': block.slug, 'record': record.slug } }) }}
           </td>
           </tr>
           {% endfor %}
