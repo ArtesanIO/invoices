@@ -3,9 +3,9 @@ parameters:
     database_driver: pdo_mysql
     database_host: 127.0.0.1
     database_port: null
-    database_name: invoices
-    database_user: invoices
-    database_password: invoices
+    database_name: l0gg3
+    database_user: l0gg3
+    database_password: l0gg3
     mailer_transport: smtp
     mailer_host: 127.0.0.1
     mailer_user: null
