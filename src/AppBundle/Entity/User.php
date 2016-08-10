@@ -20,7 +20,7 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="Blocks", mappedBy="User", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Blocks", mappedBy="Users", cascade={"persist"})
      */
 
     private $blocks;

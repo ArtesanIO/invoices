@@ -7,3 +7,8 @@ fos_js_routing:
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+api:
+    resource: "@AppBundle/Controller/API"
+    type:     rest
+    prefix:   /api

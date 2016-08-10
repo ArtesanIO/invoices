@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use AppBundle\Utils\Slug;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Blocks
@@ -23,6 +24,7 @@ class Blocks
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Groups({"blocks"})
      */
     private $id;
 
@@ -30,12 +32,14 @@ class Blocks
      * @var string
      *
      * @ORM\Column(name="block", type="string", length=255)
+     * @Groups({"blocks"})
      */
     private $block;
 
     /**
      * @ORM\ManyToOne(targetEntity="Currencys", inversedBy="blocks")
      * @ORM\JoinColumn(name="currency_id", referencedColumnName="id")
+     * @Groups({"blocks"})
      */
     private $currencys;
 
@@ -52,11 +56,13 @@ class Blocks
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="blocks")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * @Groups({"blocks"})
      */
     private $users;
 
     /**
      * @ORM\OneToMany(targetEntity="BlocksUsers", mappedBy="blocks", cascade={"persist"})
+     * @Groups({"blocks"})
      */
     private $blocksUsers;
 
@@ -99,30 +105,6 @@ class Blocks
     {
         return $this->block;
     }
-
-    /**
-     * Set currencyId
-     *
-     * @param integer $currencyId
-     * @return Blocks
-     */
-    public function setCurrencyId($currencyId)
-    {
-        $this->currencyId = $currencyId;
-
-        return $this;
-    }
-
-    /**
-     * Get currencyId
-     *
-     * @return integer
-     */
-    public function getCurrencyId()
-    {
-        return $this->currencyId;
-    }
-
     /**
      * Set currencys
      *
@@ -299,7 +281,7 @@ class Blocks
     /**
      * Get slug
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {
