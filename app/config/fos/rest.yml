@@ -6,9 +6,9 @@ fos_rest:
         mime_types:
             json: ['application/json', 'application/json;version=1.0', 'application/json;version=1.1', 'application/json;version=1.2']
         view_response_listener: 'force'
-        formats:
-            xml: true
-            json: true
+        #formats:
+        #    xml: true
+        #    json: true
         templating_formats:
             html: true
         force_redirects:
