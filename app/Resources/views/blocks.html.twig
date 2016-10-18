@@ -3,7 +3,7 @@
 {% block title_section %}
   {{ 'sections.blocks.title'|trans }}
   <div class="btn-group pull-right">
-      {% import 'AppBundle::Components/buttons.html.twig' as buttons %}
+      {% import 'AppBundle::components/buttons.html.twig' as buttons %}
 
       {{ buttons.action('actions.create'|trans, { 'path': 'blocks_create' }, 'primary') }}
   </div>
